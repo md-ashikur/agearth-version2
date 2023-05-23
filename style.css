@@ -66,7 +66,17 @@ body {
   /* 2 */
 }
 
+/* map navbar===================== */
+/*Addtional Style */
+
+
+
+
+
+
 /* custom colors start=============== */
+
+
 .bg-primary-600{
   --tw-bg-opacity: 1;
   background-color: rgb(5 31 32 / var(--tw-bg-opacity));
@@ -94,6 +104,10 @@ body {
 .text-secondary{
   --tw-text-opacity: 1;
   color: rgb(75 132 0 / var(--tw-text-opacity));
+}
+.text-secondary-light{
+  --tw-text-opacity: 1;
+  color: rgb(101 191 6 / var(--tw-text-opacity));
 }
 .text-secondary-300{
   --tw-text-opacity: 1;
