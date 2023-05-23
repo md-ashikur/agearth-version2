@@ -9,7 +9,7 @@
     <link href="./style.css" rel="stylesheet">
 </head>
 
-<body class="font-inter antialiased bg-slate-100 text-slate-600">
+<body class="font-inter antialiased bg-slate-100 text-tin">
 
     <script>
         if (localStorage.getItem('sidebar-expanded') == 'true') {
@@ -50,7 +50,7 @@
                             </svg>
                         </a>
 
-                        <a class="block rounded-full bg-slate-100 text-slate-500 hover:text-slate-600" href="cart.html">
+                        <a class="block rounded-full bg-slate-100 text-slate-500 hover:text-tin" href="cart.html">
                             <span class="sr-only">Back</span>
                             <svg width="32" height="32" viewBox="0 0 32 32">
                                 <path class="fill-current" d="M15.95 14.536l4.242-4.243a1 1 0 111.415 1.414l-4.243 4.243 4.243 4.242a1 1 0 11-1.415 1.415l-4.242-4.243-4.243 4.243a1 1 0 01-1.414-1.415l4.243-4.242-4.243-4.243a1 1 0 011.414-1.414l4.243 4.243z" />
@@ -65,7 +65,7 @@
             <main>
 
                 <div class="relative pt-8">
-                    <div class="absolute inset-0 bg-slate-800 overflow-hidden" aria-hidden="true">
+                    <div class="absolute inset-0 bg-primary-600 overflow-hidden" aria-hidden="true">
                         <img class="object-cover h-full w-full filter blur opacity-10" src="./images/pay-bg.jpg" width="460" height="180" alt="Pay background" />
                     </div>
                     <div class="relative px-4 sm:px-6 lg:px-8 max-w-lg mx-auto">
@@ -131,7 +131,7 @@
                             <!-- Form footer -->
                             <div class="mt-6">
                                 <div class="mb-4">
-                                    <button class="btn w-full bg-indigo-500 hover:bg-indigo-600 text-white" href="#0">Pay $253.00</button>
+                                    <button class="btn w-full bg-secondary hover:bg-indigo-600 text-white" href="#0">Pay $253.00</button>
                                 </div>
                                 <div class="text-xs text-slate-500 italic text-center">You'll be charged $253, including $48 for VAT in Italy</div>
                             </div>
@@ -141,7 +141,7 @@
                         <div x-show="!card" x-cloak>
                             <div>
                                 <div class="mb-4">
-                                    <button class="btn w-full bg-indigo-500 hover:bg-indigo-600 text-white" href="#0">Pay with PayPal - $253.00</button>
+                                    <button class="btn w-full bg-secondary hover:bg-indigo-600 text-white" href="#0">Pay with PayPal - $253.00</button>
                                 </div>
                                 <div class="text-xs text-slate-500 italic text-center">You'll be charged $253, including $48 for VAT in Italy</div>
                             </div>

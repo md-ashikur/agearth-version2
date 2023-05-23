@@ -75,6 +75,41 @@ body {
   --tw-bg-opacity: 1;
   background-color: rgb(4 25 26 / var(--tw-bg-opacity));
 }
+
+.bg-secondary{
+  --tw-bg-opacity: 1;
+  background-color: rgb(75 132 0 / var(--tw-bg-opacity));
+}
+.bg-secondary-300{
+  --tw-bg-opacity: 1;
+  background-color: rgb(146 207 67 / var(--tw-bg-opacity));
+}
+
+
+
+.text-primary-900{
+  --tw-text-opacity: 1;
+  color: rgb(4 25 26 / var(--tw-text-opacity));
+}
+.text-secondary{
+  --tw-text-opacity: 1;
+  color: rgb(75 132 0 / var(--tw-text-opacity));
+}
+.text-secondary-300{
+  --tw-text-opacity: 1;
+  color: rgb(146 207 67 / var(--tw-text-opacity));
+}
+
+.text-tin{
+  --tw-text-opacity: 1;
+  color: rgb(56 89 84 / var(--tw-text-opacity));
+}
+.text-tin-300{
+  --tw-text-opacity: 1;
+  color: rgb(79 120 111 / var(--tw-text-opacity));
+}
+
+
 /* custom colors end=============== */
 
 
@@ -3692,7 +3727,7 @@ span.flatpickr-weekday{
 }
 
 .text-xs{
-  font-size: 0.75rem;
+  font-size: 0.70rem;
   line-height: 1.5;
 }
 
