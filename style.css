@@ -75,8 +75,13 @@ body {
 
 
 /* custom colors start=============== */
+.hoverBtn:hover{
+  background-color: rgb(64 110 4 / var(--tw-bg-opacity));
+}
 
-
+.hoverText:hover{
+  color: #386200;
+}
 .bg-primary-600{
   --tw-bg-opacity: 1;
   background-color: rgb(5 31 32 / var(--tw-bg-opacity));
@@ -1121,7 +1126,7 @@ input[type="search"]::-webkit-search-results-decoration {
   --tw-border-opacity: 1;
   border-color: rgb(203 213 225 / var(--tw-border-opacity));
   --tw-text-opacity: 1;
-  color: rgb(99 102 241 / var(--tw-text-opacity));
+  color: rgb(101 191 6 / var(--tw-text-opacity));
 }
 
 /* Chrome, Safari and Opera */
@@ -1230,7 +1235,7 @@ input[type=range]::-moz-focus-outer {
 
 .form-switch input[type="checkbox"]:checked + label{
   --tw-bg-opacity: 1;
-  background-color: rgb(99 102 241 / var(--tw-bg-opacity));
+  background-color: rgb(75 132 0 / var(--tw-bg-opacity));
 }
 
 .form-switch input[type="checkbox"]:checked + label > span:first-child {
@@ -1784,6 +1789,10 @@ span.flatpickr-weekday{
   margin-left: 0.75rem;
   margin-right: 0.75rem;
 }
+.mx-28{
+  margin-left: 7rem;
+margin-right: 7rem;
+}
 
 .mx-auto{
   margin-left: auto;
@@ -2207,6 +2216,12 @@ span.flatpickr-weekday{
 .h-\[calc\(100vh-64px\)\]{
   height: calc(100vh - 64px);
 }
+.h-\[170px\]{
+  width: 170px;
+}
+.h-\[200px\]{
+  width: 200px;
+}
 
 .h-full{
   height: 100%;
@@ -2330,6 +2345,14 @@ span.flatpickr-weekday{
 
 .w-\[96px\]{
   width: 96px;
+}
+
+.w-\[170px\]{
+  width: 170px;
+}
+
+.w-\[200px\]{
+  width: 200px;
 }
 
 .w-full{
@@ -2498,6 +2521,10 @@ span.flatpickr-weekday{
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.rotate-90{
+  --tw-rotate: 90deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
 .rotate-180{
   --tw-rotate: 180deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -4595,7 +4622,7 @@ span.flatpickr-weekday{
 
 .peer:checked ~ .peer-checked\:border-indigo-400{
   --tw-border-opacity: 1;
-  border-color: rgb(129 140 248 / var(--tw-border-opacity));
+  border-color: rgb(101 191 6 / var(--tw-border-opacity));
 }
 
 .peer:checked ~ .peer-checked\:line-through{
@@ -5125,9 +5152,21 @@ span.flatpickr-weekday{
     z-index: auto;
   }
 
+
+  .lg\.h-\[170px\]{
+    width: 170px;
+  }
+  .lg\.h-\[200px\]{
+    width: 200px;
+  }
+
   .lg\:-mx-8{
     margin-left: -2rem;
     margin-right: -2rem;
+  }
+  .lg\:mx-28{
+    margin-left: 7rem; 
+    margin-right: 7rem;
   }
 
   .lg\:mx-auto{
@@ -5169,6 +5208,13 @@ span.flatpickr-weekday{
 
   .lg\:w-72{
     width: 18rem;
+  }
+
+  .lg\.w-\[170px\]{
+    width: 170px;
+  }
+  .lg\.w-\[200px\]{
+    width: 200px;
   }
 
   .lg\:w-\[320px\]{
