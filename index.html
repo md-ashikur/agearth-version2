@@ -47,6 +47,92 @@
     display: flex;
 
 }
+
+/* help side bar  */
+
+.helpList li :hover {
+    color: rgb(101 191 6 / var(--tw-text-opacity));
+    cursor: pointer;
+}
+#helpSidenav {
+  max-height: 100vh;
+  height: 100vh;
+  max-width: 70vw;
+  min-width: 255px;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  transition: all .3s ease-in-out;
+  transform: translate(-150%, 0px);
+  -webkit-transform: translate(-150%, 0px);
+  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -ms-transform: translate(-150%, 0px);
+
+}
+
+#helpSidenav.active {
+  transition: all .3s ease-in-out;
+  transform: translate(0%, 0px);
+  -webkit-transform: translate(0%, 0px);
+  -ms-transform: translate(0%, 0px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, .4);
+}
+
+#helpOverlay {
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  animation: fade 5s;
+  -webkit-animation: fade 500ms;
+  -moz-animation: fade 500ms;
+  -o-animation: fade 500ms;
+}
+
+#helpOverlay.active {
+  display: block;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+
     </style>
   </head>
 
@@ -57,12 +143,222 @@
     x-init="$watch('sidebarExpanded', value => localStorage.setItem('sidebar-expanded', value))"
   >
     <script>
+
+//   help side bar 
+document.addEventListener('DOMContentLoaded', function () {
+        let help_burger = document.querySelector('.helpButton');
+        let help_close = document.querySelector('.helpClose');
+        let help_sidenav = document.querySelector('#helpSidenav');
+        let help_overlay = document.querySelector('#helpOverlay');
+  
+        let help_classOpen = [help_sidenav, help_overlay];
+        help_burger.addEventListener('click', function (e) {
+          help_classOpen.forEach((el) => el.classList.add('active'));
+        });
+  
+        let help_classCloseClick = [help_overlay, help_close];
+        help_classCloseClick.forEach(function (el) {
+          el.addEventListener('click', function (els) {
+            help_classOpen.forEach((el) => el.classList.remove('active'));
+          });
+        });
+      });
+
+
       if (localStorage.getItem("sidebar-expanded") == "true") {
         document.querySelector("body").classList.add("sidebar-expanded");
       } else {
         document.querySelector("body").classList.remove("sidebar-expanded");
       }
     </script>
+
+
+
+<!-- help side bar  -->
+<div id="helpOverlay" class="fixed z-50 top-0 left-0 bg-black bg-opacity-50"></div>
+<div id="helpSidenav" class="fixed  z-50 top-0 left-0 bg-primary-600  p-2 no-scrollbar ">
+  
+        <div class="flex justify-between items-center">
+          <h4 class="mb-0 text-white">Help</h4>
+
+          <div class="helpClose" >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-square-x"
+              width="45"
+              height="45"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="#9e9e9e"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M10 10l4 4m0 -4l-4 4" />
+            </svg>
+          </div>
+        </div>
+        <hr class="opacity-30 my-3" >
+
+        <div class="sd-body no-scrollbar">
+          <div class="flex justify-center ">
+            <iframe
+              width="230"
+              height="150"
+              src="https://www.youtube.com/embed/tgbNymZ7vqY"
+            ></iframe>
+          </div>
+          <ul class="text-tin-300 helpList p-2">
+               <li class="mb-1 last:mb-0">
+              <NavLink
+                end
+                to="/"
+                
+              >
+                <span class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                  AgEarth Academy
+                </span>
+              </NavLink>
+            </li>
+            <li class="mb-1 last:mb-0">
+              <NavLink
+                end
+                to="/help/what-my-data-mean"
+              
+              >
+                <span class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                  What Does My Data Mean?
+                </span>
+              </NavLink>
+            </li>
+            <li class="mb-1 last:mb-0">
+              <NavLink
+                end
+                to="/help/exporting"
+               
+              >
+                <span class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                  Exporting
+                </span>
+              </NavLink>
+            </li>
+            <li class="mb-1 last:mb-0">
+              <NavLink
+                end
+                to="/help/annotating"
+               
+              >
+                <span class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                  Annotating
+                </span>
+              </NavLink>
+            </li>
+            <li class="mb-1 last:mb-0">
+              <NavLink
+                end
+                to="/help/sharing"
+               
+              >
+                <span class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                  Sharing
+                </span>
+              </NavLink>
+            </li>
+            <li class="mb-1 last:mb-0">
+              <NavLink
+                end
+                to="/help/volume-measurements"
+               
+              >
+                <span class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                  Volume Measurements
+                </span>
+              </NavLink>
+            </li>
+            <li class="mb-1 last:mb-0">
+              <NavLink
+                end
+                to="/help/cropping-map"
+               
+              >
+                <span class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                  Cropping your map
+                </span>
+              </NavLink>
+            </li>
+            <li class="mb-1 last:mb-0">
+              <NavLink
+                end
+                to="/help/app-industry"
+               
+              >
+                <span class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                  Apps for your industry
+                </span>
+              </NavLink>
+            </li>
+            <li class="mb-1 last:mb-0">
+              <NavLink
+                end
+                to="/help/plant-health-toolbox"
+               
+              >
+                <span class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                  Plant Health Toolbox
+                </span>
+              </NavLink>
+            </li>
+            <li class="mb-1 last:mb-0">
+              <NavLink
+                end
+                to="/help/understanding-ndvi"
+                
+              >
+                <span class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                  Understanding NDVI
+                </span>
+              </NavLink>
+            </li>
+            <li class="mb-1 last:mb-0">
+              <NavLink
+                end
+                to="/help/elevation-toolbox"
+               
+              >
+                <span class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                  Elevation Toolbox
+                </span>
+              </NavLink>
+            </li>
+            <li class="mb-1 last:mb-0">
+              <NavLink
+                end
+                to="/help/3d-point-cloud"
+               
+              >
+                <span class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                  3D Point Cloud
+                </span>
+              </NavLink>
+            </li>
+            <li class="mb-1 last:mb-0">
+              <NavLink
+                end
+                to="/help/support-Page"
+                
+              >
+                <span class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                  AgEarth Support Page
+                </span>
+              </NavLink>
+            </li>
+          </ul>
+        </div>
+      </div>
+</div>
+
+
+
 
     <!-- Page wrapper -->
     <div class="flex h-screen overflow-hidden">
@@ -171,10 +467,10 @@
 
           <!-- sidebar trail ==============  -->
           <div
-            class="bg-secondary lg:hidden block lg:sidebar-expanded:block text-white p-2 rounded-lg mt-4 text-xs"
+            class="bg-secondary lg:hidden block text-center lg:sidebar-expanded:block text-white py-2 rounded-lg mt-4 text-xs"
           >
             Trial expires in 4 days.
-            <a href="/" class="underline font-bold"> Upgrade now. </a>
+            <a href="/" class="underline font-bold"> Upgrade now.</a>
           </div>
 
           <!-- Links -->
@@ -578,12 +874,9 @@
                 </li>
 
                 <!-- Help -->
-                <li class="px-3 py-2 rounded-sm mb-0.5 last:mb-0">
-                  <a
-                    class="block text-slate-200 hover:text-white truncate transition duration-150"
-                    href="help.html"
-                  >
-                    <div class="flex items-center">
+                <li class="helpButton cursor-pointer px-3 py-2  rounded-sm mb-0.5 last:mb-0">
+                  
+                    <div class="flex text-white items-center">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         class="shrink-0 icon icon-tabler icon-tabler-zoom-question"
@@ -621,7 +914,7 @@
                         >Help</span
                       >
                     </div>
-                  </a>
+                 
                 </li>
 
                 <!-- Preferences -->
@@ -3025,7 +3318,7 @@
 
 
                   <div class="swiper tabView ">
-                    <div class="swiper-wrapper mt-10">
+                    <div class="swiper-wrapper mt-12">
 
                         <!-- list view  -->
                       <div class="swiper-slide h-screen">
@@ -3138,7 +3431,7 @@
                                             <!-- Fly -->
                                             <li>
                                                 <a
-                                                class="font-medium text-sm text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
+                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
                                                 
                                               >
                                                 <svg
@@ -3167,7 +3460,7 @@
                                             <!-- move to folder  -->
                                             <li>
                                                 <a
-                                                class="font-medium text-sm text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
+                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
                                                 
                                               >
                                               <svg
@@ -3196,7 +3489,7 @@
                                             <!-- share  -->
                                             <li>
                                                 <a
-                                                class="font-medium text-sm text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
+                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
                                                 
                                               >
                                               <svg
@@ -3244,7 +3537,7 @@
                                             <!-- user settings  -->
                                             <li>
                                                 <a
-                                                class="font-medium text-sm text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
+                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
                                                 
                                               >
                                               <svg
@@ -3283,7 +3576,7 @@
                                             <!-- delete  -->
                                             <li>
                                                 <a
-                                                class="font-medium text-sm text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
+                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
                                                 
                                               >
                                               <svg
@@ -3427,7 +3720,7 @@
                                             <!-- Fly -->
                                             <li>
                                                 <a
-                                                class="font-medium text-sm text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
+                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
                                                 
                                               >
                                                 <svg
@@ -3456,7 +3749,7 @@
                                             <!-- move to folder  -->
                                             <li>
                                                 <a
-                                                class="font-medium text-sm text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
+                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
                                                 
                                               >
                                               <svg
@@ -3485,7 +3778,7 @@
                                             <!-- share  -->
                                             <li>
                                                 <a
-                                                class="font-medium text-sm text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
+                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
                                                 
                                               >
                                               <svg
@@ -3533,7 +3826,7 @@
                                             <!-- user settings  -->
                                             <li>
                                                 <a
-                                                class="font-medium text-sm text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
+                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
                                                 
                                               >
                                               <svg
@@ -3572,7 +3865,7 @@
                                             <!-- delete  -->
                                             <li>
                                                 <a
-                                                class="font-medium text-sm text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
+                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
                                                 
                                               >
                                               <svg
@@ -3713,7 +4006,7 @@
                                             <!-- Fly -->
                                             <li>
                                                 <a
-                                                class="font-medium text-sm text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
+                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
                                                 
                                               >
                                                 <svg
@@ -3742,7 +4035,7 @@
                                             <!-- move to folder  -->
                                             <li>
                                                 <a
-                                                class="font-medium text-sm text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
+                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
                                                 
                                               >
                                               <svg
@@ -3771,7 +4064,7 @@
                                             <!-- share  -->
                                             <li>
                                                 <a
-                                                class="font-medium text-sm text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
+                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
                                                 
                                               >
                                               <svg
@@ -3819,7 +4112,7 @@
                                             <!-- user settings  -->
                                             <li>
                                                 <a
-                                                class="font-medium text-sm text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
+                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
                                                 
                                               >
                                               <svg
@@ -3858,7 +4151,7 @@
                                             <!-- delete  -->
                                             <li>
                                                 <a
-                                                class="font-medium text-sm text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
+                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
                                                 
                                               >
                                               <svg
@@ -4000,7 +4293,7 @@
                                             <!-- Fly -->
                                             <li>
                                                 <a
-                                                class="font-medium text-sm text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
+                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
                                                 
                                               >
                                                 <svg
@@ -4029,7 +4322,7 @@
                                             <!-- move to folder  -->
                                             <li>
                                                 <a
-                                                class="font-medium text-sm text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
+                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
                                                 
                                               >
                                               <svg
@@ -4058,7 +4351,7 @@
                                             <!-- share  -->
                                             <li>
                                                 <a
-                                                class="font-medium text-sm text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
+                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
                                                 
                                               >
                                               <svg
@@ -4106,7 +4399,7 @@
                                             <!-- user settings  -->
                                             <li>
                                                 <a
-                                                class="font-medium text-sm text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
+                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
                                                 
                                               >
                                               <svg
@@ -4145,7 +4438,7 @@
                                             <!-- delete  -->
                                             <li>
                                                 <a
-                                                class="font-medium text-sm text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
+                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
                                                 
                                               >
                                               <svg
@@ -4258,10 +4551,7 @@
       var swiper = new Swiper(".mySwiper", {
         slidesPerView: 3,
         spaceBetween: 30,
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
+       
         breakpoints: {
           390: {
             slidesPerView: 2,
