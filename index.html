@@ -19,120 +19,116 @@
       }
 
       .swiper-pagination-bullet {
-  width: 60px !important;
-  height: 40px !important;
-  padding: 5px 5px 5px 10px;
-  border-radius: 0px !important;
- 
-  line-height: 20px;
-  font-size: 16px;
-  color: #000 !important;
-  opacity: 1 !important;
-  background: none !important;
-}
+        width: 60px !important;
+        height: 40px !important;
+        padding: 5px 5px 5px 10px;
+        border-radius: 0px !important;
 
-.swiper-pagination-bullet-active {
-  color: #051F20 !important;
-  background: none !important;
-  border-bottom: 2px solid #051F20;
-}
-.swiper-pagination {
-	position: absolute;
-	top: -5px !important;
-	left: 12px;
-	width: auto !important;
-  height: 50px;
-	left: auto !important;
-	margin: 0;
-    display: flex;
+        line-height: 20px;
+        font-size: 16px;
+        color: #000 !important;
+        opacity: 1 !important;
+        background: none !important;
+      }
 
-}
+      .swiper-pagination-bullet-active {
+        color: #051f20 !important;
+        background: none !important;
+        border-bottom: 2px solid #051f20;
+      }
+      .swiper-pagination {
+        position: absolute;
+        top: -5px !important;
+        left: 12px;
+        width: auto !important;
+        height: 50px;
+        left: auto !important;
+        margin: 0;
+        display: flex;
+      }
 
-/* help side bar  */
+      /* help side bar  */
 
-.helpList li :hover {
-    color: rgb(101 191 6 / var(--tw-text-opacity));
-    cursor: pointer;
-}
-#helpSidenav {
-  max-height: 100vh;
-  height: 100vh;
-  max-width: 70vw;
-  min-width: 255px;
-  overflow-x: hidden;
-  overflow-y: auto;
+      .helpList li :hover {
+        color: rgb(101 191 6 / var(--tw-text-opacity));
+        cursor: pointer;
+      }
+      #helpSidenav {
+        max-height: 100vh;
+        height: 100vh;
+        max-width: 70vw;
+        min-width: 255px;
+        overflow-x: hidden;
+        overflow-y: auto;
 
-  transition: all .3s ease-in-out;
-  transform: translate(-150%, 0px);
-  -webkit-transform: translate(-150%, 0px);
-  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
-  -ms-transform: translate(-150%, 0px);
+        transition: all 0.3s ease-in-out;
+        transform: translate(-150%, 0px);
+        -webkit-transform: translate(-150%, 0px);
+        /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+        -ms-transform: translate(-150%, 0px);
+      }
 
-}
+      #helpSidenav.active {
+        transition: all 0.3s ease-in-out;
+        transform: translate(0%, 0px);
+        -webkit-transform: translate(0%, 0px);
+        -ms-transform: translate(0%, 0px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+      }
 
-#helpSidenav.active {
-  transition: all .3s ease-in-out;
-  transform: translate(0%, 0px);
-  -webkit-transform: translate(0%, 0px);
-  -ms-transform: translate(0%, 0px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, .4);
-}
+      #helpOverlay {
+        width: 100vw;
+        height: 100vh;
+        display: none;
+        animation: fade 5s;
+        -webkit-animation: fade 500ms;
+        -moz-animation: fade 500ms;
+        -o-animation: fade 500ms;
+      }
 
-#helpOverlay {
-  width: 100vw;
-  height: 100vh;
-  display: none;
-  animation: fade 5s;
-  -webkit-animation: fade 500ms;
-  -moz-animation: fade 500ms;
-  -o-animation: fade 500ms;
-}
+      #helpOverlay.active {
+        display: block;
+      }
 
-#helpOverlay.active {
-  display: block;
-}
+      @keyframes fade {
+        0% {
+          opacity: 0;
+        }
 
-@keyframes fade {
-  0% {
-    opacity: 0;
-  }
+        100% {
+          opacity: 1;
+        }
+      }
 
-  100% {
-    opacity: 1;
-  }
-}
+      @-moz-keyframes fade {
+        0% {
+          opacity: 0;
+        }
 
-@-moz-keyframes fade {
-  0% {
-    opacity: 0;
-  }
+        100% {
+          opacity: 1;
+        }
+      }
 
-  100% {
-    opacity: 1;
-  }
-}
+      @-webkit-keyframes fade {
+        0% {
+          opacity: 0;
+        }
 
-@-webkit-keyframes fade {
-  0% {
-    opacity: 0;
-  }
+        100% {
+          opacity: 1;
+        }
+      }
 
-  100% {
-    opacity: 1;
-  }
-}
+      @-o-keyframes fade {
+        0% {
+          opacity: 0;
+        }
 
-@-o-keyframes fade {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-
+        100% {
+          opacity: 1;
+        }
+      }
     </style>
   </head>
 
@@ -143,27 +139,25 @@
     x-init="$watch('sidebarExpanded', value => localStorage.setItem('sidebar-expanded', value))"
   >
     <script>
+      //   help side bar
+      document.addEventListener("DOMContentLoaded", function () {
+        let help_burger = document.querySelector(".helpButton");
+        let help_close = document.querySelector(".helpClose");
+        let help_sidenav = document.querySelector("#helpSidenav");
+        let help_overlay = document.querySelector("#helpOverlay");
 
-//   help side bar 
-document.addEventListener('DOMContentLoaded', function () {
-        let help_burger = document.querySelector('.helpButton');
-        let help_close = document.querySelector('.helpClose');
-        let help_sidenav = document.querySelector('#helpSidenav');
-        let help_overlay = document.querySelector('#helpOverlay');
-  
         let help_classOpen = [help_sidenav, help_overlay];
-        help_burger.addEventListener('click', function (e) {
-          help_classOpen.forEach((el) => el.classList.add('active'));
+        help_burger.addEventListener("click", function (e) {
+          help_classOpen.forEach((el) => el.classList.add("active"));
         });
-  
+
         let help_classCloseClick = [help_overlay, help_close];
         help_classCloseClick.forEach(function (el) {
-          el.addEventListener('click', function (els) {
-            help_classOpen.forEach((el) => el.classList.remove('active'));
+          el.addEventListener("click", function (els) {
+            help_classOpen.forEach((el) => el.classList.remove("active"));
           });
         });
       });
-
 
       if (localStorage.getItem("sidebar-expanded") == "true") {
         document.querySelector("body").classList.add("sidebar-expanded");
@@ -172,193 +166,166 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     </script>
 
+    <!-- help side bar  -->
+    <div
+      id="helpOverlay"
+      class="fixed z-50 top-0 left-0 bg-black bg-opacity-50"
+    ></div>
+    <div
+      id="helpSidenav"
+      class="fixed z-50 top-0 left-0 bg-primary-600 p-2 no-scrollbar"
+    >
+      <div class="flex justify-between items-center">
+        <h4 class="mb-0 text-white">Help</h4>
 
-
-<!-- help side bar  -->
-<div id="helpOverlay" class="fixed z-50 top-0 left-0 bg-black bg-opacity-50"></div>
-<div id="helpSidenav" class="fixed  z-50 top-0 left-0 bg-primary-600  p-2 no-scrollbar ">
-  
-        <div class="flex justify-between items-center">
-          <h4 class="mb-0 text-white">Help</h4>
-
-          <div class="helpClose" >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="icon icon-tabler icon-tabler-square-x"
-              width="45"
-              height="45"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="#9e9e9e"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M10 10l4 4m0 -4l-4 4" />
-            </svg>
-          </div>
-        </div>
-        <hr class="opacity-30 my-3" >
-
-        <div class="sd-body no-scrollbar">
-          <div class="flex justify-center ">
-            <iframe
-              width="230"
-              height="150"
-              src="https://www.youtube.com/embed/tgbNymZ7vqY"
-            ></iframe>
-          </div>
-          <ul class="text-tin-300 helpList p-2">
-               <li class="mb-1 last:mb-0">
-              <a
-                end
-                href="/"
-                
-              >
-                <span class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                  AgEarth Academy
-                </span>
-              </a>
-            </li>
-            <li class="mb-1 last:mb-0">
-              <a
-                end
-                href="help-what-does-data-mean.html"
-              
-              >
-                <span class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                  What Does My Data Mean?
-                </span>
-              </a>
-            </li>
-            <li class="mb-1 last:mb-0">
-              <a
-                end
-                href="help-exporting.html"
-               
-              >
-                <span class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                  Exporting
-                </span>
-              </a>
-            </li>
-            <li class="mb-1 last:mb-0">
-              <a
-                end
-                href="help-annotating.html"
-               
-              >
-                <span class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                  Annotating
-                </span>
-              </a>
-            </li>
-            <li class="mb-1 last:mb-0">
-              <a
-                end
-                href="help-sharing.html"
-               
-              >
-                <span class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                  Sharing
-                </span>
-              </a>
-            </li>
-            <li class="mb-1 last:mb-0">
-              <a
-                end
-                href="help-volume-measurements.html"
-               
-              >
-                <span class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                  Volume Measurements
-                </span>
-              </a>
-            </li>
-            <li class="mb-1 last:mb-0">
-              <a
-                end
-                href="help-cropping-map.html"
-               
-              >
-                <span class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                  Cropping your map
-                </span>
-              </a>
-            </li>
-            <li class="mb-1 last:mb-0">
-              <a
-                end
-                href="help-apps-for-industry.html"
-               
-              >
-                <span class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                  Apps for your industry
-                </span>
-              </a>
-            </li>
-            <li class="mb-1 last:mb-0">
-              <a
-                end
-                href="help-planet-health-toolbox.html"
-               
-              >
-                <span class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                  Plant Health Toolbox
-                </span>
-              </a>
-            </li>
-            <li class="mb-1 last:mb-0">
-              <a
-                end
-                href="help-ndvi.html"
-                
-              >
-                <span class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                  Understanding NDVI
-                </span>
-              </a>
-            </li>
-            <li class="mb-1 last:mb-0">
-              <a
-                end
-                href="help-elevation.html"
-               
-              >
-                <span class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                  Elevation Toolbox
-                </span>
-              </a>
-            </li>
-            <li class="mb-1 last:mb-0">
-              <a
-                end
-                href="help-3d-point-cloud.html"
-               
-              >
-                <span class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                  3D Point Cloud
-                </span>
-              </a>
-            </li>
-            <li class="mb-1 last:mb-0">
-              <a
-                end
-                href="help-support.html"
-                
-              >
-                <span class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                  AgEarth Support Page
-                </span>
-              </a>
-            </li>
-          </ul>
+        <div class="helpClose">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-square-x"
+            width="45"
+            height="45"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#9e9e9e"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M10 10l4 4m0 -4l-4 4" />
+          </svg>
         </div>
       </div>
-</div>
+      <hr class="opacity-30 my-3" />
 
-
-
+      <div class="sd-body no-scrollbar">
+        <div class="flex justify-center">
+          <iframe
+            width="230"
+            height="150"
+            src="https://www.youtube.com/embed/tgbNymZ7vqY"
+          ></iframe>
+        </div>
+        <ul class="text-tin-300 helpList p-2">
+          <li class="mb-1 last:mb-0">
+            <a end href="/">
+              <span
+                class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
+              >
+                AgEarth Academy
+              </span>
+            </a>
+          </li>
+          <li class="mb-1 last:mb-0">
+            <a end href="help-what-does-data-mean.html">
+              <span
+                class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
+              >
+                What Does My Data Mean?
+              </span>
+            </a>
+          </li>
+          <li class="mb-1 last:mb-0">
+            <a end href="help-exporting.html">
+              <span
+                class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
+              >
+                Exporting
+              </span>
+            </a>
+          </li>
+          <li class="mb-1 last:mb-0">
+            <a end href="help-annotating.html">
+              <span
+                class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
+              >
+                Annotating
+              </span>
+            </a>
+          </li>
+          <li class="mb-1 last:mb-0">
+            <a end href="help-sharing.html">
+              <span
+                class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
+              >
+                Sharing
+              </span>
+            </a>
+          </li>
+          <li class="mb-1 last:mb-0">
+            <a end href="help-volume-measurements.html">
+              <span
+                class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
+              >
+                Volume Measurements
+              </span>
+            </a>
+          </li>
+          <li class="mb-1 last:mb-0">
+            <a end href="help-cropping-map.html">
+              <span
+                class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
+              >
+                Cropping your map
+              </span>
+            </a>
+          </li>
+          <li class="mb-1 last:mb-0">
+            <a end href="help-apps-for-industry.html">
+              <span
+                class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
+              >
+                Apps for your industry
+              </span>
+            </a>
+          </li>
+          <li class="mb-1 last:mb-0">
+            <a end href="help-planet-health-toolbox.html">
+              <span
+                class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
+              >
+                Plant Health Toolbox
+              </span>
+            </a>
+          </li>
+          <li class="mb-1 last:mb-0">
+            <a end href="help-ndvi.html">
+              <span
+                class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
+              >
+                Understanding NDVI
+              </span>
+            </a>
+          </li>
+          <li class="mb-1 last:mb-0">
+            <a end href="help-elevation.html">
+              <span
+                class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
+              >
+                Elevation Toolbox
+              </span>
+            </a>
+          </li>
+          <li class="mb-1 last:mb-0">
+            <a end href="help-3d-point-cloud.html">
+              <span
+                class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
+              >
+                3D Point Cloud
+              </span>
+            </a>
+          </li>
+          <li class="mb-1 last:mb-0">
+            <a end href="help-support.html">
+              <span
+                class="text-sm font-medium lg:opacity-100 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
+              >
+                AgEarth Support Page
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
 
     <!-- Page wrapper -->
     <div class="flex h-screen overflow-hidden">
@@ -515,7 +482,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 >
                   <a
                     class="block text-slate-200 hover:text-white truncate transition duration-150"
-                    href="projects.html"
+                    href="/"
                   >
                     <div class="flex items-center">
                       <svg
@@ -874,47 +841,47 @@ document.addEventListener('DOMContentLoaded', function () {
                 </li>
 
                 <!-- Help -->
-                <li class="helpButton cursor-pointer px-3 py-2  rounded-sm mb-0.5 last:mb-0">
-                  
-                    <div class="flex text-white items-center">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="shrink-0 icon icon-tabler icon-tabler-zoom-question"
-                        width="32"
-                        height="32"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="#9e9e9e"
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <circle
-                          cx="10"
-                          cy="10"
-                          r="7"
-                          class="stroke-current text-tin-300"
-                        />
+                <li
+                  class="helpButton cursor-pointer px-3 py-2 rounded-sm mb-0.5 last:mb-0"
+                >
+                  <div class="flex text-white items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="shrink-0 icon icon-tabler icon-tabler-zoom-question"
+                      width="32"
+                      height="32"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="#9e9e9e"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <circle
+                        cx="10"
+                        cy="10"
+                        r="7"
+                        class="stroke-current text-tin-300"
+                      />
 
-                        <line
-                          class="stroke-current text-tin-300"
-                          x1="10"
-                          y1="13"
-                          x2="10"
-                          y2="13.01"
-                        />
-                        <path
-                          class="stroke-current text-tin-300"
-                          d="M10 10a1.5 1.5 0 1 0 -1.14 -2.474"
-                        />
-                      </svg>
-                      <span
-                        class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
-                        >Help</span
-                      >
-                    </div>
-                 
+                      <line
+                        class="stroke-current text-tin-300"
+                        x1="10"
+                        y1="13"
+                        x2="10"
+                        y2="13.01"
+                      />
+                      <path
+                        class="stroke-current text-tin-300"
+                        d="M10 10a1.5 1.5 0 1 0 -1.14 -2.474"
+                      />
+                    </svg>
+                    <span
+                      class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
+                      >Help</span
+                    >
+                  </div>
                 </li>
 
                 <!-- Preferences -->
@@ -1006,7 +973,7 @@ document.addEventListener('DOMContentLoaded', function () {
                       <li class="mb-1 last:mb-0">
                         <a
                           class="block text-tin-300 hover:text-slate-200 transition duration-150 truncate"
-                          href="index.html"
+                          href="dashboard.html"
                         >
                           <span
                             class="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200"
@@ -3109,7 +3076,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="mr-2">
                       <a href="map.html">
                         <button
-                          class="btn bg-secondary hover:bg-secondary-dark text-white"
+                          class="btn bg-secondary hover:bg-indigo-600 text-white"
                         >
                           <svg
                             class="w-4 h-4 fill-current opacity-50"
@@ -3130,7 +3097,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <!-- Start -->
                         <div x-data="{ modalOpen: false }">
                           <button
-                            class="btn bg-secondary hover:bg-secondary-dark text-white"
+                            class="btn bg-secondary hover:bg-indigo-600 text-white"
                             @click.prevent="modalOpen = true"
                             aria-controls="feedback-modal"
                           >
@@ -3263,8 +3230,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 <!-- project view tab  -->
                 <div class="relative">
                   <!-- tabs -->
-                  
-                  <div class="flex absolute ">
+
+                  <div class="flex absolute">
                     <div class="swiper-pagination"></div>
                     <div class="">
                       <svg
@@ -3285,10 +3252,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         <rect x="3" y="4" width="6" height="6" rx="1" />
                         <rect x="3" y="14" width="6" height="6" rx="1" />
                       </svg>
-                     
                     </div>
 
-                   
                     <div class="ml-10">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -3313,45 +3278,45 @@ document.addEventListener('DOMContentLoaded', function () {
                         <path d="M16 15l0 .01" />
                       </svg>
                     </div>
-                    
                   </div>
 
-
-                  <div class="swiper tabView ">
+                  <div class="swiper tabView">
                     <div class="swiper-wrapper mt-12">
-
-                        <!-- list view  -->
+                      <!-- list view  -->
                       <div class="swiper-slide h-screen">
-
-
-                        <div class=" relative items-center">
-                            <a class=" font-semibold text-slate-800" href="">
+                        <div class="relative items-center">
+                          <a class="font-semibold text-slate-800" href="">
+                            <div
+                              class="flex items-center justify-between bg-amber-50 border-amber-300 shadow-lg rounded-sm border w-auto m-2 px-5 py-4"
+                            >
                               <div
-                               class="flex items-center justify-between bg-amber-50 border-amber-300 shadow-lg rounded-sm border w-auto  m-2  px-5 py-4"
+                                class="md:flex justify-between items-center space-y-4 md:space-y-0 space-x-2"
                               >
-                                <div class="md:flex justify-between  items-center space-y-4 md:space-y-0 space-x-2">
-                                  <!--  Left side  -->
-                                  <div class="flex items-start items-center space-x-3 md:space-x-4">
-                                    <div class="w-9 h-9 shrink-0 mt-1">
-                                      <img
-                                        class="w-9 h-9 rounded-full"
-                                        src="./images/map1.jpg"
-                                        width="36"
-                                        height="36"
-                                        alt={props.company}
-                                      />
-                                    </div>
-                                    <div>
-                      
-                      
-                                     <div class="flex lg:flex-row md:flex-row flex-col place-items-start lg:place-items-center md:place-items-center ">
-                                     <h3> Agriculture Example</h3>
-                                      
-                      
-                                       <!-- example   -->
-                      
+                                <!--  Left side  -->
+                                <div
+                                  class="flex items-start items-center space-x-3 md:space-x-4"
+                                >
+                                  <div class="w-9 h-9 shrink-0 mt-1">
+                                    <img
+                                      class="w-9 h-9 rounded-full"
+                                      src="./images/map1.jpg"
+                                      width="36"
+                                      height="36"
+                                      alt="{props.company}"
+                                    />
+                                  </div>
+                                  <div>
+                                    <div
+                                      class="flex lg:flex-row md:flex-row flex-col place-items-start lg:place-items-center md:place-items-center"
+                                    >
+                                      <h3>Agriculture Example</h3>
+
+                                      <!-- example   -->
+
                                       <!-- Start  -->
-                                      <div class="text-xs m-2 inline-flex font-medium bg-slate-700 text-slate-100 rounded-full text-center px-2.5 py-1">
+                                      <div
+                                        class="text-xs m-2 inline-flex font-medium bg-slate-700 text-slate-100 rounded-full text-center px-2.5 py-1"
+                                      >
                                         <svg
                                           xmlns="http://www.w3.org/2000/svg"
                                           class="icon mr-2 icon-tabler icon-tabler-box-multiple"
@@ -3364,1183 +3329,1488 @@ document.addEventListener('DOMContentLoaded', function () {
                                           stroke-linecap="round"
                                           stroke-linejoin="round"
                                         >
-                                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                          <rect x="7" y="3" width="14" height="14" rx="2" />
-                                          <path d="M17 17v2a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h2" />
+                                          <path
+                                            stroke="none"
+                                            d="M0 0h24v24H0z"
+                                            fill="none"
+                                          />
+                                          <rect
+                                            x="7"
+                                            y="3"
+                                            width="14"
+                                            height="14"
+                                            rx="2"
+                                          />
+                                          <path
+                                            d="M17 17v2a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h2"
+                                          />
                                         </svg>
                                         Example
                                       </div>
-                                     <!-- End -->
-                                     </div>
+                                      <!-- End -->
                                     </div>
                                   </div>
-                      
-                               <!-- Right side mobile device only  -->
-                                 <div class="flex block md:hidden lg:hidden items-center relative left-10 space-x-4  md:pl-0">
-                                    <div class="text-sm text-slate-500 whitespace-nowrap">
-                                        April 22, 2023
-                                    </div>
-                                  </div>
-                      
-                      
                                 </div>
-                      
-                                          <!-- Right side  -->
-                                    <div class="flex hidden md:block lg:block items-center relative right-10 space-x-4  md:pl-0">
-                                    <div class="text-sm text-slate-500 whitespace-nowrap">
-                                        April 22, 2023
-                                    </div>
+
+                                <!-- Right side mobile device only  -->
+                                <div
+                                  class="flex block md:hidden lg:hidden items-center relative left-10 space-x-4 md:pl-0"
+                                >
+                                  <div
+                                    class="text-sm text-slate-500 whitespace-nowrap"
+                                  >
+                                    April 22, 2023
                                   </div>
+                                </div>
                               </div>
-                            </a>
 
-
-                             <!-- Quick Selection -->
-                             <div>
-                               
-                                <!-- Start -->
-                                <div class="absolute top-5 right-5 flex" x-data="{ open: false }">
-                                    <button
-                                        class="text-tin-300 hover:text-slate-500 rounded-full"
-                                        :class="{ 'bg-slate-100 text-slate-500': open }"
-                                        aria-haspopup="true"
-                                        @click.prevent="open = !open"
-                                        :aria-expanded="open"
-                                    >
-                                        <span class="sr-only">Menu</span>
-                                        <svg class="w-8 h-8 fill-current -rotate-90" viewBox="0 0 32 32">
-                                            <circle cx="16" cy="16" r="2" />
-                                            <circle cx="10" cy="16" r="2" />
-                                            <circle cx="22" cy="16" r="2" />
-                                        </svg>
-                                    </button>
-                                    <div
-                                        class="origin-bottom-left z-10 absolute -bottom-12 -left-36 min-w-36 bg-white text-xs border border-slate-200 py-1.5 rounded shadow-lg overflow-hidden mt-1"                
-                                        @click.outside="open = false"
-                                        @keydown.escape.window="open = false"
-                                        x-show="open"
-                                        x-transition:enter="transition ease-out duration-200 transform"
-                                        x-transition:enter-start="opacity-0 -translate-y-2"
-                                        x-transition:enter-end="opacity-100 translate-y-0"
-                                        x-transition:leave="transition ease-out duration-200"
-                                        x-transition:leave-start="opacity-100"
-                                        x-transition:leave-end="opacity-0"
-                                        x-cloak                
-                                    >
-                                        <ul>
-                                            <!-- Fly -->
-                                            <li>
-                                                <a
-                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
-                                                
-                                              >
-                                                <svg
-                                                  xmlns="http://www.w3.org/2000/svg"
-                                                  class="-rotate-90 mr-2 icon icon-tabler icon-tabler-plane"
-                                                  width="20"
-                                                  height="20"
-                                                  viewBox="0 0 24 24"
-                                                  stroke-width="0.5"
-                                                  stroke="#ffffff"
-                                                  fill="none"
-                                                  stroke-linecap="round"
-                                                  stroke-linejoin="round"
-                                                >
-                                                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                  <path
-                                                    class="fill-slate-600 opacity-50 "
-                                                    d="M16 10h4a2 2 0 0 1 0 4h-4l-4 7h-3l2 -7h-4l-2 2h-3l2 -4l-2 -4h3l2 2h4l-2 -7h3z"
-                                                  />
-                                                </svg>
-                                                Fly
-                                              </a>
-                                            </li>
-                                            
-
-                                            <!-- move to folder  -->
-                                            <li>
-                                                <a
-                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
-                                                
-                                              >
-                                              <svg
-                                              xmlns="http://www.w3.org/2000/svg"
-                                              class="icon icon-tabler icon-tabler-folder mr-2"
-                                              width="20"
-                                              height="20"
-                                              viewBox="0 0 24 24"
-                                              stroke-width="0.5"
-                                              stroke="#ffffff"
-                                              fill="none"
-                                              stroke-linecap="round"
-                                              stroke-linejoin="round"
-                                            >
-                                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                              <path
-                                                class="fill-slate-600 opacity-50 "
-                                                d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2"
-                                              />
-                                            </svg>
-                                            Move to folder
-                                              </a>
-                                            </li>
-                                            
-
-                                            <!-- share  -->
-                                            <li>
-                                                <a
-                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
-                                                
-                                              >
-                                              <svg
-                                              xmlns="http://www.w3.org/2000/svg"
-                                              class="icon mr-2 icon-tabler icon-tabler-share"
-                                              width="20"
-                                              height="20"
-                                              viewBox="0 0 24 24"
-                                              stroke-width="1.5"
-                                              stroke="#9e9e9e"
-                                              fill="none"
-                                              stroke-linecap="round"
-                                              stroke-linejoin="round"
-                                            >
-                                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                              <circle
-                                                cx="6"
-                                                cy="12"
-                                                r="3"
-                                                stroke="none"
-                                                class="fill-slate-600 opacity-50 "
-                                              />
-                                              <circle
-                                                cx="18"
-                                                cy="6"
-                                                r="3"
-                                                stroke="none"
-                                                class="fill-slate-600 opacity-50 "
-                                              />
-                                              <circle
-                                                cx="18"
-                                                cy="18"
-                                                r="3"
-                                                stroke="none"
-                                                class="fill-slate-600 opacity-50 "
-                                              />
-                                              <line x1="8.7" y1="10.7" x2="15.3" y2="7.3" />
-                                              <line x1="8.7" y1="13.3" x2="15.3" y2="16.7" />
-                                            </svg>
-                                            Share
-                                              </a>
-                                            </li>
-                                            
-
-                                            <!-- user settings  -->
-                                            <li>
-                                                <a
-                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
-                                                
-                                              >
-                                              <svg
-                                              xmlns="http://www.w3.org/2000/svg"
-                                              class="mr-2 icon icon-tabler icon-tabler-users"
-                                              width="20"
-                                              height="20"
-                                              viewBox="0 0 24 24"
-                                              stroke-width="1.5"
-                                              stroke="#9e9e9e"
-                                              fill="none"
-                                              stroke-linecap="round"
-                                              stroke-linejoin="round"
-                                            >
-                                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                              <circle
-                                                cx="9"
-                                                cy="7"
-                                                r="4"
-                                                stroke="none"
-                                                class="fill-slate-600 opacity-50 "
-                                              />
-                                              <path
-                                                d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"
-                                                stroke="none"
-                                                class="fill-slate-600 opacity-50 "
-                                              />
-                                              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                                              <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
-                                            </svg>
-                                            User Settings
-                                              </a>
-                                            </li>
-                                            
-
-                                            <!-- delete  -->
-                                            <li>
-                                                <a
-                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
-                                                
-                                              >
-                                              <svg
-                                              xmlns="http://www.w3.org/2000/svg"
-                                              class="mr-2 icon icon-tabler icon-tabler-trash"
-                                              width="20"
-                                              height="20"
-                                              viewBox="0 0 24 24"
-                                              stroke-width="1.5"
-                                              stroke="#9e9e9e"
-                                              fill="none"
-                                              stroke-linecap="round"
-                                              stroke-linejoin="round"
-                                            >
-                                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                              <line x1="4" y1="7" x2="20" y2="7" />
-                                              <line x1="10" y1="11" x2="10" y2="17" />
-                                              <line x1="14" y1="11" x2="14" y2="17" />
-                                              <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                                              <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                                            </svg>
-                                            Delete
-                                              </a>
-                                            </li>
-                                            
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- End -->
-                            </div>
-
-
-                      
-                          </div>
-
-
-                        <div class=" relative items-center">
-                            <a class=" font-semibold text-slate-800" href="">
+                              <!-- Right side  -->
                               <div
-                               class="flex items-center justify-between bg-white border-slate-200 shadow-lg rounded-sm border w-auto  m-2  px-5 py-4"
+                                class="flex hidden md:block lg:block items-center relative right-10 space-x-4 md:pl-0"
                               >
-                                <div class="md:flex justify-between  items-center space-y-4 md:space-y-0 space-x-2">
-                                  <!--  Left side  -->
-                                  <div class="flex items-start items-center space-x-3 md:space-x-4">
-                                    <div class="w-9 h-9 shrink-0 mt-1">
-                                      <img
-                                        class="w-9 h-9 rounded-full"
-                                        src="./images/map1.jpg"
-                                        width="36"
-                                        height="36"
-                                        alt={props.company}
-                                      />
-                                    </div>
-                                    <div>
-                      
-                      
-                                     <div class="flex lg:flex-row md:flex-row flex-col place-items-start lg:place-items-center md:place-items-center ">
-                                     <h3> Agriculture Example</h3>
-                                      
-                      
-                                       <!-- example   -->
-                      
-                                      <!-- Start  -->
-                                      <div class="text-xs m-2 inline-flex font-medium bg-slate-700 text-slate-100 rounded-full text-center px-2.5 py-1">
-                                        <svg
-                                          xmlns="http://www.w3.org/2000/svg"
-                                          class="icon mr-2 icon-tabler icon-tabler-box-multiple"
-                                          width="16"
-                                          height="16"
-                                          viewBox="0 0 24 24"
-                                          stroke-width="2"
-                                          stroke="#ffffff"
-                                          fill="none"
-                                          stroke-linecap="round"
-                                          stroke-linejoin="round"
-                                        >
-                                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                          <rect x="7" y="3" width="14" height="14" rx="2" />
-                                          <path d="M17 17v2a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h2" />
-                                        </svg>
-                                        Example
-                                      </div>
-                                     <!-- End -->
-                                     </div>
-                                    </div>
-                                  </div>
-                      
-                               <!-- Right side mobile device only  -->
-                                 <div class="flex block md:hidden lg:hidden items-center relative left-10 space-x-4  md:pl-0">
-                                    <div class="text-sm text-slate-500 whitespace-nowrap">
-                                        April 22, 2023
-                                    </div>
-                                  </div>
-                      
-                      
+                                <div
+                                  class="text-sm text-slate-500 whitespace-nowrap"
+                                >
+                                  April 22, 2023
                                 </div>
-                      
-                                          <!-- Right side  -->
-                                    <div class="flex hidden md:block lg:block items-center relative right-10 space-x-4  md:pl-0">
-                                    <div class="text-sm text-slate-500 whitespace-nowrap">
-                                        April 22, 2023
-                                    </div>
-                                  </div>
                               </div>
-                            </a>
-
-
-                             <!-- Quick Selection -->
-                             <div>
-                               
-                                <!-- Start -->
-                                <div class="absolute top-5 right-5 flex" x-data="{ open: false }">
-                                    <button
-                                        class="text-tin-300 hover:text-slate-500 rounded-full"
-                                        :class="{ 'bg-slate-100 text-slate-500': open }"
-                                        aria-haspopup="true"
-                                        @click.prevent="open = !open"
-                                        :aria-expanded="open"
-                                    >
-                                        <span class="sr-only">Menu</span>
-                                        <svg class="w-8 h-8 fill-current -rotate-90" viewBox="0 0 32 32">
-                                            <circle cx="16" cy="16" r="2" />
-                                            <circle cx="10" cy="16" r="2" />
-                                            <circle cx="22" cy="16" r="2" />
-                                        </svg>
-                                    </button>
-                                    <div
-                                        class="origin-bottom-left z-10 absolute -bottom-12 -left-36 min-w-36 bg-white text-xs border border-slate-200 py-1.5 rounded shadow-lg overflow-hidden mt-1"                
-                                        @click.outside="open = false"
-                                        @keydown.escape.window="open = false"
-                                        x-show="open"
-                                        x-transition:enter="transition ease-out duration-200 transform"
-                                        x-transition:enter-start="opacity-0 -translate-y-2"
-                                        x-transition:enter-end="opacity-100 translate-y-0"
-                                        x-transition:leave="transition ease-out duration-200"
-                                        x-transition:leave-start="opacity-100"
-                                        x-transition:leave-end="opacity-0"
-                                        x-cloak                
-                                    >
-                                        <ul>
-                                            <!-- Fly -->
-                                            <li>
-                                                <a
-                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
-                                                
-                                              >
-                                                <svg
-                                                  xmlns="http://www.w3.org/2000/svg"
-                                                  class="-rotate-90 mr-2 icon icon-tabler icon-tabler-plane"
-                                                  width="20"
-                                                  height="20"
-                                                  viewBox="0 0 24 24"
-                                                  stroke-width="0.5"
-                                                  stroke="#ffffff"
-                                                  fill="none"
-                                                  stroke-linecap="round"
-                                                  stroke-linejoin="round"
-                                                >
-                                                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                  <path
-                                                    class="fill-slate-600 opacity-50 "
-                                                    d="M16 10h4a2 2 0 0 1 0 4h-4l-4 7h-3l2 -7h-4l-2 2h-3l2 -4l-2 -4h3l2 2h4l-2 -7h3z"
-                                                  />
-                                                </svg>
-                                                Fly
-                                              </a>
-                                            </li>
-                                            
-
-                                            <!-- move to folder  -->
-                                            <li>
-                                                <a
-                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
-                                                
-                                              >
-                                              <svg
-                                              xmlns="http://www.w3.org/2000/svg"
-                                              class="icon icon-tabler icon-tabler-folder mr-2"
-                                              width="20"
-                                              height="20"
-                                              viewBox="0 0 24 24"
-                                              stroke-width="0.5"
-                                              stroke="#ffffff"
-                                              fill="none"
-                                              stroke-linecap="round"
-                                              stroke-linejoin="round"
-                                            >
-                                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                              <path
-                                                class="fill-slate-600 opacity-50 "
-                                                d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2"
-                                              />
-                                            </svg>
-                                            Move to folder
-                                              </a>
-                                            </li>
-                                            
-
-                                            <!-- share  -->
-                                            <li>
-                                                <a
-                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
-                                                
-                                              >
-                                              <svg
-                                              xmlns="http://www.w3.org/2000/svg"
-                                              class="icon mr-2 icon-tabler icon-tabler-share"
-                                              width="20"
-                                              height="20"
-                                              viewBox="0 0 24 24"
-                                              stroke-width="1.5"
-                                              stroke="#9e9e9e"
-                                              fill="none"
-                                              stroke-linecap="round"
-                                              stroke-linejoin="round"
-                                            >
-                                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                              <circle
-                                                cx="6"
-                                                cy="12"
-                                                r="3"
-                                                stroke="none"
-                                                class="fill-slate-600 opacity-50 "
-                                              />
-                                              <circle
-                                                cx="18"
-                                                cy="6"
-                                                r="3"
-                                                stroke="none"
-                                                class="fill-slate-600 opacity-50 "
-                                              />
-                                              <circle
-                                                cx="18"
-                                                cy="18"
-                                                r="3"
-                                                stroke="none"
-                                                class="fill-slate-600 opacity-50 "
-                                              />
-                                              <line x1="8.7" y1="10.7" x2="15.3" y2="7.3" />
-                                              <line x1="8.7" y1="13.3" x2="15.3" y2="16.7" />
-                                            </svg>
-                                            Share
-                                              </a>
-                                            </li>
-                                            
-
-                                            <!-- user settings  -->
-                                            <li>
-                                                <a
-                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
-                                                
-                                              >
-                                              <svg
-                                              xmlns="http://www.w3.org/2000/svg"
-                                              class="mr-2 icon icon-tabler icon-tabler-users"
-                                              width="20"
-                                              height="20"
-                                              viewBox="0 0 24 24"
-                                              stroke-width="1.5"
-                                              stroke="#9e9e9e"
-                                              fill="none"
-                                              stroke-linecap="round"
-                                              stroke-linejoin="round"
-                                            >
-                                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                              <circle
-                                                cx="9"
-                                                cy="7"
-                                                r="4"
-                                                stroke="none"
-                                                class="fill-slate-600 opacity-50 "
-                                              />
-                                              <path
-                                                d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"
-                                                stroke="none"
-                                                class="fill-slate-600 opacity-50 "
-                                              />
-                                              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                                              <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
-                                            </svg>
-                                            User Settings
-                                              </a>
-                                            </li>
-                                            
-
-                                            <!-- delete  -->
-                                            <li>
-                                                <a
-                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
-                                                
-                                              >
-                                              <svg
-                                              xmlns="http://www.w3.org/2000/svg"
-                                              class="mr-2 icon icon-tabler icon-tabler-trash"
-                                              width="20"
-                                              height="20"
-                                              viewBox="0 0 24 24"
-                                              stroke-width="1.5"
-                                              stroke="#9e9e9e"
-                                              fill="none"
-                                              stroke-linecap="round"
-                                              stroke-linejoin="round"
-                                            >
-                                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                              <line x1="4" y1="7" x2="20" y2="7" />
-                                              <line x1="10" y1="11" x2="10" y2="17" />
-                                              <line x1="14" y1="11" x2="14" y2="17" />
-                                              <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                                              <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                                            </svg>
-                                            Delete
-                                              </a>
-                                            </li>
-                                            
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- End -->
                             </div>
-                          </div>
+                          </a>
 
-
-                        <div class=" relative items-center">
-                            <a class=" font-semibold text-slate-800" href="">
-                              <div
-                               class="flex items-center justify-between bg-white border-slate-200 shadow-lg rounded-sm border w-auto  m-2  px-5 py-4"
-                              >
-                                <div class="md:flex justify-between  items-center space-y-4 md:space-y-0 space-x-2">
-                                  <!--  Left side  -->
-                                  <div class="flex items-start items-center space-x-3 md:space-x-4">
-                                    <div class="w-9 h-9 shrink-0 mt-1">
-                                      <img
-                                        class="w-9 h-9 rounded-full"
-                                        src="./images/map1.jpg"
-                                        width="36"
-                                        height="36"
-                                        alt={props.company}
-                                      />
-                                    </div>
-                                    <div>
-                      
-                      
-                                     <div class="flex lg:flex-row md:flex-row flex-col place-items-start lg:place-items-center md:place-items-center ">
-                                     <h3> Agriculture Example</h3>
-                                      
-                      
-                                       <!-- example   -->
-                      
-                                      <!-- Start  -->
-                                      <div class="text-xs m-2 inline-flex font-medium bg-slate-700 text-slate-100 rounded-full text-center px-2.5 py-1">
-                                        <svg
-                                          xmlns="http://www.w3.org/2000/svg"
-                                          class="icon mr-2 icon-tabler icon-tabler-box-multiple"
-                                          width="16"
-                                          height="16"
-                                          viewBox="0 0 24 24"
-                                          stroke-width="2"
-                                          stroke="#ffffff"
-                                          fill="none"
-                                          stroke-linecap="round"
-                                          stroke-linejoin="round"
-                                        >
-                                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                          <rect x="7" y="3" width="14" height="14" rx="2" />
-                                          <path d="M17 17v2a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h2" />
-                                        </svg>
-                                        Example
-                                      </div>
-                                     <!-- End -->
-                                     </div>
-                                    </div>
-                                  </div>
-                      
-                               <!-- Right side mobile device only  -->
-                                 <div class="flex block md:hidden lg:hidden items-center relative left-10 space-x-4  md:pl-0">
-                                    <div class="text-sm text-slate-500 whitespace-nowrap">
-                                        April 22, 2023
-                                    </div>
-                                  </div>
-                      
-                      
-                                </div>
-                      
-                                          <!-- Right side  -->
-                                    <div class="flex hidden md:block lg:block items-center relative right-10 space-x-4  md:pl-0">
-                                    <div class="text-sm text-slate-500 whitespace-nowrap">
-                                        April 22, 2023
-                                    </div>
-                                  </div>
-                              </div>
-                            </a>
-
-
-                             <!-- Quick Selection -->
-                             <div>
-                               
-                                <!-- Start -->
-                                <div class="absolute top-5 right-5 flex" x-data="{ open: false }">
-                                    <button
-                                        class="text-tin-300 hover:text-slate-500 rounded-full"
-                                        :class="{ 'bg-slate-100 text-slate-500': open }"
-                                        aria-haspopup="true"
-                                        @click.prevent="open = !open"
-                                        :aria-expanded="open"
-                                    >
-                                        <span class="sr-only">Menu</span>
-                                        <svg class="w-8 h-8 fill-current -rotate-90" viewBox="0 0 32 32">
-                                            <circle cx="16" cy="16" r="2" />
-                                            <circle cx="10" cy="16" r="2" />
-                                            <circle cx="22" cy="16" r="2" />
-                                        </svg>
-                                    </button>
-                                    <div
-                                        class="origin-bottom-left z-10 absolute -bottom-12 -left-36 min-w-36 bg-white text-xs border border-slate-200 py-1.5 rounded shadow-lg overflow-hidden mt-1"                
-                                        @click.outside="open = false"
-                                        @keydown.escape.window="open = false"
-                                        x-show="open"
-                                        x-transition:enter="transition ease-out duration-200 transform"
-                                        x-transition:enter-start="opacity-0 -translate-y-2"
-                                        x-transition:enter-end="opacity-100 translate-y-0"
-                                        x-transition:leave="transition ease-out duration-200"
-                                        x-transition:leave-start="opacity-100"
-                                        x-transition:leave-end="opacity-0"
-                                        x-cloak                
-                                    >
-                                        <ul>
-                                            <!-- Fly -->
-                                            <li>
-                                                <a
-                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
-                                                
-                                              >
-                                                <svg
-                                                  xmlns="http://www.w3.org/2000/svg"
-                                                  class="-rotate-90 mr-2 icon icon-tabler icon-tabler-plane"
-                                                  width="20"
-                                                  height="20"
-                                                  viewBox="0 0 24 24"
-                                                  stroke-width="0.5"
-                                                  stroke="#ffffff"
-                                                  fill="none"
-                                                  stroke-linecap="round"
-                                                  stroke-linejoin="round"
-                                                >
-                                                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                  <path
-                                                    class="fill-slate-600 opacity-50 "
-                                                    d="M16 10h4a2 2 0 0 1 0 4h-4l-4 7h-3l2 -7h-4l-2 2h-3l2 -4l-2 -4h3l2 2h4l-2 -7h3z"
-                                                  />
-                                                </svg>
-                                                Fly
-                                              </a>
-                                            </li>
-                                            
-
-                                            <!-- move to folder  -->
-                                            <li>
-                                                <a
-                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
-                                                
-                                              >
-                                              <svg
-                                              xmlns="http://www.w3.org/2000/svg"
-                                              class="icon icon-tabler icon-tabler-folder mr-2"
-                                              width="20"
-                                              height="20"
-                                              viewBox="0 0 24 24"
-                                              stroke-width="0.5"
-                                              stroke="#ffffff"
-                                              fill="none"
-                                              stroke-linecap="round"
-                                              stroke-linejoin="round"
-                                            >
-                                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                              <path
-                                                class="fill-slate-600 opacity-50 "
-                                                d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2"
-                                              />
-                                            </svg>
-                                            Move to folder
-                                              </a>
-                                            </li>
-                                            
-
-                                            <!-- share  -->
-                                            <li>
-                                                <a
-                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
-                                                
-                                              >
-                                              <svg
-                                              xmlns="http://www.w3.org/2000/svg"
-                                              class="icon mr-2 icon-tabler icon-tabler-share"
-                                              width="20"
-                                              height="20"
-                                              viewBox="0 0 24 24"
-                                              stroke-width="1.5"
-                                              stroke="#9e9e9e"
-                                              fill="none"
-                                              stroke-linecap="round"
-                                              stroke-linejoin="round"
-                                            >
-                                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                              <circle
-                                                cx="6"
-                                                cy="12"
-                                                r="3"
-                                                stroke="none"
-                                                class="fill-slate-600 opacity-50 "
-                                              />
-                                              <circle
-                                                cx="18"
-                                                cy="6"
-                                                r="3"
-                                                stroke="none"
-                                                class="fill-slate-600 opacity-50 "
-                                              />
-                                              <circle
-                                                cx="18"
-                                                cy="18"
-                                                r="3"
-                                                stroke="none"
-                                                class="fill-slate-600 opacity-50 "
-                                              />
-                                              <line x1="8.7" y1="10.7" x2="15.3" y2="7.3" />
-                                              <line x1="8.7" y1="13.3" x2="15.3" y2="16.7" />
-                                            </svg>
-                                            Share
-                                              </a>
-                                            </li>
-                                            
-
-                                            <!-- user settings  -->
-                                            <li>
-                                                <a
-                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
-                                                
-                                              >
-                                              <svg
-                                              xmlns="http://www.w3.org/2000/svg"
-                                              class="mr-2 icon icon-tabler icon-tabler-users"
-                                              width="20"
-                                              height="20"
-                                              viewBox="0 0 24 24"
-                                              stroke-width="1.5"
-                                              stroke="#9e9e9e"
-                                              fill="none"
-                                              stroke-linecap="round"
-                                              stroke-linejoin="round"
-                                            >
-                                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                              <circle
-                                                cx="9"
-                                                cy="7"
-                                                r="4"
-                                                stroke="none"
-                                                class="fill-slate-600 opacity-50 "
-                                              />
-                                              <path
-                                                d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"
-                                                stroke="none"
-                                                class="fill-slate-600 opacity-50 "
-                                              />
-                                              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                                              <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
-                                            </svg>
-                                            User Settings
-                                              </a>
-                                            </li>
-                                            
-
-                                            <!-- delete  -->
-                                            <li>
-                                                <a
-                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
-                                                
-                                              >
-                                              <svg
-                                              xmlns="http://www.w3.org/2000/svg"
-                                              class="mr-2 icon icon-tabler icon-tabler-trash"
-                                              width="20"
-                                              height="20"
-                                              viewBox="0 0 24 24"
-                                              stroke-width="1.5"
-                                              stroke="#9e9e9e"
-                                              fill="none"
-                                              stroke-linecap="round"
-                                              stroke-linejoin="round"
-                                            >
-                                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                              <line x1="4" y1="7" x2="20" y2="7" />
-                                              <line x1="10" y1="11" x2="10" y2="17" />
-                                              <line x1="14" y1="11" x2="14" y2="17" />
-                                              <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                                              <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                                            </svg>
-                                            Delete
-                                              </a>
-                                            </li>
-                                            
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- End -->
-                            </div>
-
-                          </div>
-
-
-                        <div class=" relative items-center">
-                            <a class=" font-semibold text-slate-800" href="">
-                              <div
-                               class="flex items-center justify-between bg-white border-slate-200 shadow-lg rounded-sm border w-auto  m-2  px-5 py-4"
-                              >
-                                <div class="md:flex justify-between  items-center space-y-4 md:space-y-0 space-x-2">
-                                  <!--  Left side  -->
-                                  <div class="flex items-start items-center space-x-3 md:space-x-4">
-                                    <div class="w-9 h-9 shrink-0 mt-1">
-                                      <img
-                                        class="w-9 h-9 rounded-full"
-                                        src="./images/map1.jpg"
-                                        width="36"
-                                        height="36"
-                                        alt={props.company}
-                                      />
-                                    </div>
-                                    <div>
-                      
-                      
-                                     <div class="flex lg:flex-row md:flex-row flex-col place-items-start lg:place-items-center md:place-items-center ">
-                                     <h3> Agriculture Example</h3>
-                                      
-                      
-                                       <!-- example   -->
-                      
-                                      <!-- Start  -->
-                                      <div class="text-xs m-2 inline-flex font-medium bg-slate-700 text-slate-100 rounded-full text-center px-2.5 py-1">
-                                        <svg
-                                          xmlns="http://www.w3.org/2000/svg"
-                                          class="icon mr-2 icon-tabler icon-tabler-box-multiple"
-                                          width="16"
-                                          height="16"
-                                          viewBox="0 0 24 24"
-                                          stroke-width="2"
-                                          stroke="#ffffff"
-                                          fill="none"
-                                          stroke-linecap="round"
-                                          stroke-linejoin="round"
-                                        >
-                                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                          <rect x="7" y="3" width="14" height="14" rx="2" />
-                                          <path d="M17 17v2a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h2" />
-                                        </svg>
-                                        Example
-                                      </div>
-                                     <!-- End -->
-                                     </div>
-                                    </div>
-                                  </div>
-                      
-                               <!-- Right side mobile device only  -->
-                                 <div class="flex block md:hidden lg:hidden items-center relative left-10 space-x-4  md:pl-0">
-                                    <div class="text-sm text-slate-500 whitespace-nowrap">
-                                        April 22, 2023
-                                    </div>
-                                  </div>
-                      
-                      
-                                </div>
-                      
-                                          <!-- Right side  -->
-                                    <div class="flex hidden md:block lg:block items-center relative right-10 space-x-4  md:pl-0">
-                                    <div class="text-sm text-slate-500 whitespace-nowrap">
-                                        April 22, 2023
-                                    </div>
-                                  </div>
-                              </div>
-                            </a>
-
-
-                             <!-- Quick Selection -->
-                             <div>
-                               
-                                <!-- Start -->
-                                <div class="absolute top-5 right-5 flex" x-data="{ open: false }">
-                                    <button
-                                        class="text-tin-300 hover:text-slate-500 rounded-full"
-                                        :class="{ 'bg-slate-100 text-slate-500': open }"
-                                        aria-haspopup="true"
-                                        @click.prevent="open = !open"
-                                        :aria-expanded="open"
-                                    >
-                                        <span class="sr-only">Menu</span>
-                                        <svg class="w-8 h-8 fill-current -rotate-90" viewBox="0 0 32 32">
-                                            <circle cx="16" cy="16" r="2" />
-                                            <circle cx="10" cy="16" r="2" />
-                                            <circle cx="22" cy="16" r="2" />
-                                        </svg>
-                                    </button>
-                                    <div
-                                        class="origin-bottom-left z-10 absolute -bottom-12 -left-36 min-w-36 bg-white text-xs border border-slate-200 py-1.5 rounded shadow-lg overflow-hidden mt-1"                
-                                        @click.outside="open = false"
-                                        @keydown.escape.window="open = false"
-                                        x-show="open"
-                                        x-transition:enter="transition ease-out duration-200 transform"
-                                        x-transition:enter-start="opacity-0 -translate-y-2"
-                                        x-transition:enter-end="opacity-100 translate-y-0"
-                                        x-transition:leave="transition ease-out duration-200"
-                                        x-transition:leave-start="opacity-100"
-                                        x-transition:leave-end="opacity-0"
-                                        x-cloak                
-                                    >
-                                        <ul>
-                                            <!-- Fly -->
-                                            <li>
-                                                <a
-                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
-                                                
-                                              >
-                                                <svg
-                                                  xmlns="http://www.w3.org/2000/svg"
-                                                  class="-rotate-90 mr-2 icon icon-tabler icon-tabler-plane"
-                                                  width="20"
-                                                  height="20"
-                                                  viewBox="0 0 24 24"
-                                                  stroke-width="0.5"
-                                                  stroke="#ffffff"
-                                                  fill="none"
-                                                  stroke-linecap="round"
-                                                  stroke-linejoin="round"
-                                                >
-                                                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                  <path
-                                                    class="fill-slate-600 opacity-50 "
-                                                    d="M16 10h4a2 2 0 0 1 0 4h-4l-4 7h-3l2 -7h-4l-2 2h-3l2 -4l-2 -4h3l2 2h4l-2 -7h3z"
-                                                  />
-                                                </svg>
-                                                Fly
-                                              </a>
-                                            </li>
-                                            
-
-                                            <!-- move to folder  -->
-                                            <li>
-                                                <a
-                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
-                                                
-                                              >
-                                              <svg
-                                              xmlns="http://www.w3.org/2000/svg"
-                                              class="icon icon-tabler icon-tabler-folder mr-2"
-                                              width="20"
-                                              height="20"
-                                              viewBox="0 0 24 24"
-                                              stroke-width="0.5"
-                                              stroke="#ffffff"
-                                              fill="none"
-                                              stroke-linecap="round"
-                                              stroke-linejoin="round"
-                                            >
-                                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                              <path
-                                                class="fill-slate-600 opacity-50 "
-                                                d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2"
-                                              />
-                                            </svg>
-                                            Move to folder
-                                              </a>
-                                            </li>
-                                            
-
-                                            <!-- share  -->
-                                            <li>
-                                                <a
-                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
-                                                
-                                              >
-                                              <svg
-                                              xmlns="http://www.w3.org/2000/svg"
-                                              class="icon mr-2 icon-tabler icon-tabler-share"
-                                              width="20"
-                                              height="20"
-                                              viewBox="0 0 24 24"
-                                              stroke-width="1.5"
-                                              stroke="#9e9e9e"
-                                              fill="none"
-                                              stroke-linecap="round"
-                                              stroke-linejoin="round"
-                                            >
-                                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                              <circle
-                                                cx="6"
-                                                cy="12"
-                                                r="3"
-                                                stroke="none"
-                                                class="fill-slate-600 opacity-50 "
-                                              />
-                                              <circle
-                                                cx="18"
-                                                cy="6"
-                                                r="3"
-                                                stroke="none"
-                                                class="fill-slate-600 opacity-50 "
-                                              />
-                                              <circle
-                                                cx="18"
-                                                cy="18"
-                                                r="3"
-                                                stroke="none"
-                                                class="fill-slate-600 opacity-50 "
-                                              />
-                                              <line x1="8.7" y1="10.7" x2="15.3" y2="7.3" />
-                                              <line x1="8.7" y1="13.3" x2="15.3" y2="16.7" />
-                                            </svg>
-                                            Share
-                                              </a>
-                                            </li>
-                                            
-
-                                            <!-- user settings  -->
-                                            <li>
-                                                <a
-                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
-                                                
-                                              >
-                                              <svg
-                                              xmlns="http://www.w3.org/2000/svg"
-                                              class="mr-2 icon icon-tabler icon-tabler-users"
-                                              width="20"
-                                              height="20"
-                                              viewBox="0 0 24 24"
-                                              stroke-width="1.5"
-                                              stroke="#9e9e9e"
-                                              fill="none"
-                                              stroke-linecap="round"
-                                              stroke-linejoin="round"
-                                            >
-                                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                              <circle
-                                                cx="9"
-                                                cy="7"
-                                                r="4"
-                                                stroke="none"
-                                                class="fill-slate-600 opacity-50 "
-                                              />
-                                              <path
-                                                d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"
-                                                stroke="none"
-                                                class="fill-slate-600 opacity-50 "
-                                              />
-                                              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                                              <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
-                                            </svg>
-                                            User Settings
-                                              </a>
-                                            </li>
-                                            
-
-                                            <!-- delete  -->
-                                            <li>
-                                                <a
-                                                class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3" href="#0" @click="open = false" @focus="open = true" @focusout="open = false"
-                                                
-                                              >
-                                              <svg
-                                              xmlns="http://www.w3.org/2000/svg"
-                                              class="mr-2 icon icon-tabler icon-tabler-trash"
-                                              width="20"
-                                              height="20"
-                                              viewBox="0 0 24 24"
-                                              stroke-width="1.5"
-                                              stroke="#9e9e9e"
-                                              fill="none"
-                                              stroke-linecap="round"
-                                              stroke-linejoin="round"
-                                            >
-                                              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                              <line x1="4" y1="7" x2="20" y2="7" />
-                                              <line x1="10" y1="11" x2="10" y2="17" />
-                                              <line x1="14" y1="11" x2="14" y2="17" />
-                                              <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
-                                              <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                                            </svg>
-                                            Delete
-                                              </a>
-                                            </li>
-                                            
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- End -->
-                            </div>
-
-
-                      
-                          </div>
-
-
+                          <!-- Quick Selection -->
                           <div>
-                           
+                            <!-- Start -->
+                            <div
+                              class="absolute top-5 right-5 flex"
+                              x-data="{ open: false }"
+                            >
+                              <button
+                                class="text-tin-300 hover:text-slate-500 rounded-full"
+                                :class="{ 'bg-slate-100 text-slate-500': open }"
+                                aria-haspopup="true"
+                                @click.prevent="open = !open"
+                                :aria-expanded="open"
+                              >
+                                <span class="sr-only">Menu</span>
+                                <svg
+                                  class="w-8 h-8 fill-current -rotate-90"
+                                  viewBox="0 0 32 32"
+                                >
+                                  <circle cx="16" cy="16" r="2" />
+                                  <circle cx="10" cy="16" r="2" />
+                                  <circle cx="22" cy="16" r="2" />
+                                </svg>
+                              </button>
+                              <div
+                                class="origin-bottom-left z-10 absolute -bottom-12 -left-36 min-w-36 bg-white text-xs border border-slate-200 py-1.5 rounded shadow-lg overflow-hidden mt-1"
+                                @click.outside="open = false"
+                                @keydown.escape.window="open = false"
+                                x-show="open"
+                                x-transition:enter="transition ease-out duration-200 transform"
+                                x-transition:enter-start="opacity-0 -translate-y-2"
+                                x-transition:enter-end="opacity-100 translate-y-0"
+                                x-transition:leave="transition ease-out duration-200"
+                                x-transition:leave-start="opacity-100"
+                                x-transition:leave-end="opacity-0"
+                                x-cloak
+                              >
+                                <ul>
+                                  <!-- Fly -->
+                                  <li>
+                                    <a
+                                      class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3"
+                                      href="#0"
+                                      @click="open = false"
+                                      @focus="open = true"
+                                      @focusout="open = false"
+                                    >
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="-rotate-90 mr-2 icon icon-tabler icon-tabler-plane"
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="0.5"
+                                        stroke="#ffffff"
+                                        fill="none"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      >
+                                        <path
+                                          stroke="none"
+                                          d="M0 0h24v24H0z"
+                                          fill="none"
+                                        />
+                                        <path
+                                          class="fill-slate-600 opacity-50"
+                                          d="M16 10h4a2 2 0 0 1 0 4h-4l-4 7h-3l2 -7h-4l-2 2h-3l2 -4l-2 -4h3l2 2h4l-2 -7h3z"
+                                        />
+                                      </svg>
+                                      Fly
+                                    </a>
+                                  </li>
 
-                            <!-- list view pagination  -->
-                            <div class="px-6 py-8 rounded-sm">
-                                <!-- Start -->
-                                <div class="flex justify-center">
-                                    <nav class="flex" role="navigation" aria-label="Navigation">
-                                        <div class="mr-2">
-                                            <span class="inline-flex items-center justify-center rounded leading-5 px-2.5 py-2 bg-white border border-slate-200 text-slate-300">
-                                                <span class="sr-only">Previous</span><wbr />
-                                                <svg class="h-4 w-4 fill-current" viewBox="0 0 16 16">
-                                                    <path d="M9.4 13.4l1.4-1.4-4-4 4-4-1.4-1.4L4 8z" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                        <ul class="inline-flex text-sm font-medium -space-x-px shadow-sm">
-                                            <li>
-                                                <span class="inline-flex items-center justify-center rounded-l leading-5 px-3.5 py-2 bg-white border border-slate-200 text-secondary">1</span>
-                                            </li>
-                                            <li>
-                                                <a class="inline-flex items-center justify-center leading-5 px-3.5 py-2 bg-white hover:bg-secondary border border-slate-200 text-tin hover:text-white" href="#0">2</a>
-                                            </li>
-                                            <li>
-                                                <a class="inline-flex items-center justify-center leading-5 px-3.5 py-2 bg-white hover:bg-secondary border border-slate-200 text-tin hover:text-white" href="#0">3</a>
-                                            </li>
-                                            <li>
-                                                <span class="inline-flex items-center justify-center leading-5 px-3.5 py-2 bg-white border border-slate-200 text-tin-300">…</span>
-                                            </li>
-                                            <li>
-                                                <a class="inline-flex items-center justify-center rounded-r leading-5 px-3.5 py-2 bg-white hover:bg-secondary border border-slate-200 text-tin hover:text-white" href="#0">9</a>
-                                            </li>
-                                        </ul>
-                                        <div class="ml-2">
-                                            <a href="#0" class="inline-flex items-center justify-center rounded leading-5 px-2.5 py-2 bg-white hover:bg-secondary border border-slate-200 text-tin hover:text-white shadow-sm">
-                                                <span class="sr-only">Next</span><wbr />
-                                                <svg class="h-4 w-4 fill-current" viewBox="0 0 16 16">
-                                                    <path d="M6.6 13.4L5.2 12l4-4-4-4 1.4-1.4L12 8z" />
-                                                </svg>
-                                            </a>
-                                        </div>
-                                    </nav>
-                                </div>
-                                <!-- End -->
+                                  <!-- move to folder  -->
+                                  <li>
+                                    <a
+                                      class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3"
+                                      href="#0"
+                                      @click="open = false"
+                                      @focus="open = true"
+                                      @focusout="open = false"
+                                    >
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="icon icon-tabler icon-tabler-folder mr-2"
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="0.5"
+                                        stroke="#ffffff"
+                                        fill="none"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      >
+                                        <path
+                                          stroke="none"
+                                          d="M0 0h24v24H0z"
+                                          fill="none"
+                                        />
+                                        <path
+                                          class="fill-slate-600 opacity-50"
+                                          d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2"
+                                        />
+                                      </svg>
+                                      Move to folder
+                                    </a>
+                                  </li>
+
+                                  <!-- share  -->
+                                  <li>
+                                    <a
+                                      class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3"
+                                      href="#0"
+                                      @click="open = false"
+                                      @focus="open = true"
+                                      @focusout="open = false"
+                                    >
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="icon mr-2 icon-tabler icon-tabler-share"
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="1.5"
+                                        stroke="#9e9e9e"
+                                        fill="none"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      >
+                                        <path
+                                          stroke="none"
+                                          d="M0 0h24v24H0z"
+                                          fill="none"
+                                        />
+                                        <circle
+                                          cx="6"
+                                          cy="12"
+                                          r="3"
+                                          stroke="none"
+                                          class="fill-slate-600 opacity-50"
+                                        />
+                                        <circle
+                                          cx="18"
+                                          cy="6"
+                                          r="3"
+                                          stroke="none"
+                                          class="fill-slate-600 opacity-50"
+                                        />
+                                        <circle
+                                          cx="18"
+                                          cy="18"
+                                          r="3"
+                                          stroke="none"
+                                          class="fill-slate-600 opacity-50"
+                                        />
+                                        <line
+                                          x1="8.7"
+                                          y1="10.7"
+                                          x2="15.3"
+                                          y2="7.3"
+                                        />
+                                        <line
+                                          x1="8.7"
+                                          y1="13.3"
+                                          x2="15.3"
+                                          y2="16.7"
+                                        />
+                                      </svg>
+                                      Share
+                                    </a>
+                                  </li>
+
+                                  <!-- user settings  -->
+                                  <li>
+                                    <a
+                                      class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3"
+                                      href="#0"
+                                      @click="open = false"
+                                      @focus="open = true"
+                                      @focusout="open = false"
+                                    >
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="mr-2 icon icon-tabler icon-tabler-users"
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="1.5"
+                                        stroke="#9e9e9e"
+                                        fill="none"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      >
+                                        <path
+                                          stroke="none"
+                                          d="M0 0h24v24H0z"
+                                          fill="none"
+                                        />
+                                        <circle
+                                          cx="9"
+                                          cy="7"
+                                          r="4"
+                                          stroke="none"
+                                          class="fill-slate-600 opacity-50"
+                                        />
+                                        <path
+                                          d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"
+                                          stroke="none"
+                                          class="fill-slate-600 opacity-50"
+                                        />
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                                        <path
+                                          d="M21 21v-2a4 4 0 0 0 -3 -3.85"
+                                        />
+                                      </svg>
+                                      User Settings
+                                    </a>
+                                  </li>
+
+                                  <!-- delete  -->
+                                  <li>
+                                    <a
+                                      class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3"
+                                      href="#0"
+                                      @click="open = false"
+                                      @focus="open = true"
+                                      @focusout="open = false"
+                                    >
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="mr-2 icon icon-tabler icon-tabler-trash"
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="1.5"
+                                        stroke="#9e9e9e"
+                                        fill="none"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      >
+                                        <path
+                                          stroke="none"
+                                          d="M0 0h24v24H0z"
+                                          fill="none"
+                                        />
+                                        <line x1="4" y1="7" x2="20" y2="7" />
+                                        <line x1="10" y1="11" x2="10" y2="17" />
+                                        <line x1="14" y1="11" x2="14" y2="17" />
+                                        <path
+                                          d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"
+                                        />
+                                        <path
+                                          d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"
+                                        />
+                                      </svg>
+                                      Delete
+                                    </a>
+                                  </li>
+                                </ul>
+                              </div>
                             </div>
+                            <!-- End -->
+                          </div>
                         </div>
 
+                        <div class="relative items-center">
+                          <a class="font-semibold text-slate-800" href="">
+                            <div
+                              class="flex items-center justify-between bg-white border-slate-200 shadow-lg rounded-sm border w-auto m-2 px-5 py-4"
+                            >
+                              <div
+                                class="md:flex justify-between items-center space-y-4 md:space-y-0 space-x-2"
+                              >
+                                <!--  Left side  -->
+                                <div
+                                  class="flex items-start items-center space-x-3 md:space-x-4"
+                                >
+                                  <div class="w-9 h-9 shrink-0 mt-1">
+                                    <img
+                                      class="w-9 h-9 rounded-full"
+                                      src="./images/map1.jpg"
+                                      width="36"
+                                      height="36"
+                                      alt="{props.company}"
+                                    />
+                                  </div>
+                                  <div>
+                                    <div
+                                      class="flex lg:flex-row md:flex-row flex-col place-items-start lg:place-items-center md:place-items-center"
+                                    >
+                                      <h3>Agriculture Example</h3>
+
+                                      <!-- example   -->
+
+                                      <!-- Start  -->
+                                      <div
+                                        class="text-xs m-2 inline-flex font-medium bg-slate-700 text-slate-100 rounded-full text-center px-2.5 py-1"
+                                      >
+                                        <svg
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          class="icon mr-2 icon-tabler icon-tabler-box-multiple"
+                                          width="16"
+                                          height="16"
+                                          viewBox="0 0 24 24"
+                                          stroke-width="2"
+                                          stroke="#ffffff"
+                                          fill="none"
+                                          stroke-linecap="round"
+                                          stroke-linejoin="round"
+                                        >
+                                          <path
+                                            stroke="none"
+                                            d="M0 0h24v24H0z"
+                                            fill="none"
+                                          />
+                                          <rect
+                                            x="7"
+                                            y="3"
+                                            width="14"
+                                            height="14"
+                                            rx="2"
+                                          />
+                                          <path
+                                            d="M17 17v2a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h2"
+                                          />
+                                        </svg>
+                                        Example
+                                      </div>
+                                      <!-- End -->
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <!-- Right side mobile device only  -->
+                                <div
+                                  class="flex block md:hidden lg:hidden items-center relative left-10 space-x-4 md:pl-0"
+                                >
+                                  <div
+                                    class="text-sm text-slate-500 whitespace-nowrap"
+                                  >
+                                    April 22, 2023
+                                  </div>
+                                </div>
+                              </div>
+
+                              <!-- Right side  -->
+                              <div
+                                class="flex hidden md:block lg:block items-center relative right-10 space-x-4 md:pl-0"
+                              >
+                                <div
+                                  class="text-sm text-slate-500 whitespace-nowrap"
+                                >
+                                  April 22, 2023
+                                </div>
+                              </div>
+                            </div>
+                          </a>
+
+                          <!-- Quick Selection -->
+                          <div>
+                            <!-- Start -->
+                            <div
+                              class="absolute top-5 right-5 flex"
+                              x-data="{ open: false }"
+                            >
+                              <button
+                                class="text-tin-300 hover:text-slate-500 rounded-full"
+                                :class="{ 'bg-slate-100 text-slate-500': open }"
+                                aria-haspopup="true"
+                                @click.prevent="open = !open"
+                                :aria-expanded="open"
+                              >
+                                <span class="sr-only">Menu</span>
+                                <svg
+                                  class="w-8 h-8 fill-current -rotate-90"
+                                  viewBox="0 0 32 32"
+                                >
+                                  <circle cx="16" cy="16" r="2" />
+                                  <circle cx="10" cy="16" r="2" />
+                                  <circle cx="22" cy="16" r="2" />
+                                </svg>
+                              </button>
+                              <div
+                                class="origin-bottom-left z-10 absolute -bottom-12 -left-36 min-w-36 bg-white text-xs border border-slate-200 py-1.5 rounded shadow-lg overflow-hidden mt-1"
+                                @click.outside="open = false"
+                                @keydown.escape.window="open = false"
+                                x-show="open"
+                                x-transition:enter="transition ease-out duration-200 transform"
+                                x-transition:enter-start="opacity-0 -translate-y-2"
+                                x-transition:enter-end="opacity-100 translate-y-0"
+                                x-transition:leave="transition ease-out duration-200"
+                                x-transition:leave-start="opacity-100"
+                                x-transition:leave-end="opacity-0"
+                                x-cloak
+                              >
+                                <ul>
+                                  <!-- Fly -->
+                                  <li>
+                                    <a
+                                      class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3"
+                                      href="#0"
+                                      @click="open = false"
+                                      @focus="open = true"
+                                      @focusout="open = false"
+                                    >
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="-rotate-90 mr-2 icon icon-tabler icon-tabler-plane"
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="0.5"
+                                        stroke="#ffffff"
+                                        fill="none"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      >
+                                        <path
+                                          stroke="none"
+                                          d="M0 0h24v24H0z"
+                                          fill="none"
+                                        />
+                                        <path
+                                          class="fill-slate-600 opacity-50"
+                                          d="M16 10h4a2 2 0 0 1 0 4h-4l-4 7h-3l2 -7h-4l-2 2h-3l2 -4l-2 -4h3l2 2h4l-2 -7h3z"
+                                        />
+                                      </svg>
+                                      Fly
+                                    </a>
+                                  </li>
+
+                                  <!-- move to folder  -->
+                                  <li>
+                                    <a
+                                      class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3"
+                                      href="#0"
+                                      @click="open = false"
+                                      @focus="open = true"
+                                      @focusout="open = false"
+                                    >
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="icon icon-tabler icon-tabler-folder mr-2"
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="0.5"
+                                        stroke="#ffffff"
+                                        fill="none"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      >
+                                        <path
+                                          stroke="none"
+                                          d="M0 0h24v24H0z"
+                                          fill="none"
+                                        />
+                                        <path
+                                          class="fill-slate-600 opacity-50"
+                                          d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2"
+                                        />
+                                      </svg>
+                                      Move to folder
+                                    </a>
+                                  </li>
+
+                                  <!-- share  -->
+                                  <li>
+                                    <a
+                                      class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3"
+                                      href="#0"
+                                      @click="open = false"
+                                      @focus="open = true"
+                                      @focusout="open = false"
+                                    >
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="icon mr-2 icon-tabler icon-tabler-share"
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="1.5"
+                                        stroke="#9e9e9e"
+                                        fill="none"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      >
+                                        <path
+                                          stroke="none"
+                                          d="M0 0h24v24H0z"
+                                          fill="none"
+                                        />
+                                        <circle
+                                          cx="6"
+                                          cy="12"
+                                          r="3"
+                                          stroke="none"
+                                          class="fill-slate-600 opacity-50"
+                                        />
+                                        <circle
+                                          cx="18"
+                                          cy="6"
+                                          r="3"
+                                          stroke="none"
+                                          class="fill-slate-600 opacity-50"
+                                        />
+                                        <circle
+                                          cx="18"
+                                          cy="18"
+                                          r="3"
+                                          stroke="none"
+                                          class="fill-slate-600 opacity-50"
+                                        />
+                                        <line
+                                          x1="8.7"
+                                          y1="10.7"
+                                          x2="15.3"
+                                          y2="7.3"
+                                        />
+                                        <line
+                                          x1="8.7"
+                                          y1="13.3"
+                                          x2="15.3"
+                                          y2="16.7"
+                                        />
+                                      </svg>
+                                      Share
+                                    </a>
+                                  </li>
+
+                                  <!-- user settings  -->
+                                  <li>
+                                    <a
+                                      class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3"
+                                      href="#0"
+                                      @click="open = false"
+                                      @focus="open = true"
+                                      @focusout="open = false"
+                                    >
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="mr-2 icon icon-tabler icon-tabler-users"
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="1.5"
+                                        stroke="#9e9e9e"
+                                        fill="none"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      >
+                                        <path
+                                          stroke="none"
+                                          d="M0 0h24v24H0z"
+                                          fill="none"
+                                        />
+                                        <circle
+                                          cx="9"
+                                          cy="7"
+                                          r="4"
+                                          stroke="none"
+                                          class="fill-slate-600 opacity-50"
+                                        />
+                                        <path
+                                          d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"
+                                          stroke="none"
+                                          class="fill-slate-600 opacity-50"
+                                        />
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                                        <path
+                                          d="M21 21v-2a4 4 0 0 0 -3 -3.85"
+                                        />
+                                      </svg>
+                                      User Settings
+                                    </a>
+                                  </li>
+
+                                  <!-- delete  -->
+                                  <li>
+                                    <a
+                                      class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3"
+                                      href="#0"
+                                      @click="open = false"
+                                      @focus="open = true"
+                                      @focusout="open = false"
+                                    >
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="mr-2 icon icon-tabler icon-tabler-trash"
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="1.5"
+                                        stroke="#9e9e9e"
+                                        fill="none"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      >
+                                        <path
+                                          stroke="none"
+                                          d="M0 0h24v24H0z"
+                                          fill="none"
+                                        />
+                                        <line x1="4" y1="7" x2="20" y2="7" />
+                                        <line x1="10" y1="11" x2="10" y2="17" />
+                                        <line x1="14" y1="11" x2="14" y2="17" />
+                                        <path
+                                          d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"
+                                        />
+                                        <path
+                                          d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"
+                                        />
+                                      </svg>
+                                      Delete
+                                    </a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            <!-- End -->
+                          </div>
+                        </div>
+
+                        <div class="relative items-center">
+                          <a class="font-semibold text-slate-800" href="">
+                            <div
+                              class="flex items-center justify-between bg-white border-slate-200 shadow-lg rounded-sm border w-auto m-2 px-5 py-4"
+                            >
+                              <div
+                                class="md:flex justify-between items-center space-y-4 md:space-y-0 space-x-2"
+                              >
+                                <!--  Left side  -->
+                                <div
+                                  class="flex items-start items-center space-x-3 md:space-x-4"
+                                >
+                                  <div class="w-9 h-9 shrink-0 mt-1">
+                                    <img
+                                      class="w-9 h-9 rounded-full"
+                                      src="./images/map1.jpg"
+                                      width="36"
+                                      height="36"
+                                      alt="{props.company}"
+                                    />
+                                  </div>
+                                  <div>
+                                    <div
+                                      class="flex lg:flex-row md:flex-row flex-col place-items-start lg:place-items-center md:place-items-center"
+                                    >
+                                      <h3>Agriculture Example</h3>
+
+                                      <!-- example   -->
+
+                                      <!-- Start  -->
+                                      <div
+                                        class="text-xs m-2 inline-flex font-medium bg-slate-700 text-slate-100 rounded-full text-center px-2.5 py-1"
+                                      >
+                                        <svg
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          class="icon mr-2 icon-tabler icon-tabler-box-multiple"
+                                          width="16"
+                                          height="16"
+                                          viewBox="0 0 24 24"
+                                          stroke-width="2"
+                                          stroke="#ffffff"
+                                          fill="none"
+                                          stroke-linecap="round"
+                                          stroke-linejoin="round"
+                                        >
+                                          <path
+                                            stroke="none"
+                                            d="M0 0h24v24H0z"
+                                            fill="none"
+                                          />
+                                          <rect
+                                            x="7"
+                                            y="3"
+                                            width="14"
+                                            height="14"
+                                            rx="2"
+                                          />
+                                          <path
+                                            d="M17 17v2a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h2"
+                                          />
+                                        </svg>
+                                        Example
+                                      </div>
+                                      <!-- End -->
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <!-- Right side mobile device only  -->
+                                <div
+                                  class="flex block md:hidden lg:hidden items-center relative left-10 space-x-4 md:pl-0"
+                                >
+                                  <div
+                                    class="text-sm text-slate-500 whitespace-nowrap"
+                                  >
+                                    April 22, 2023
+                                  </div>
+                                </div>
+                              </div>
+
+                              <!-- Right side  -->
+                              <div
+                                class="flex hidden md:block lg:block items-center relative right-10 space-x-4 md:pl-0"
+                              >
+                                <div
+                                  class="text-sm text-slate-500 whitespace-nowrap"
+                                >
+                                  April 22, 2023
+                                </div>
+                              </div>
+                            </div>
+                          </a>
+
+                          <!-- Quick Selection -->
+                          <div>
+                            <!-- Start -->
+                            <div
+                              class="absolute top-5 right-5 flex"
+                              x-data="{ open: false }"
+                            >
+                              <button
+                                class="text-tin-300 hover:text-slate-500 rounded-full"
+                                :class="{ 'bg-slate-100 text-slate-500': open }"
+                                aria-haspopup="true"
+                                @click.prevent="open = !open"
+                                :aria-expanded="open"
+                              >
+                                <span class="sr-only">Menu</span>
+                                <svg
+                                  class="w-8 h-8 fill-current -rotate-90"
+                                  viewBox="0 0 32 32"
+                                >
+                                  <circle cx="16" cy="16" r="2" />
+                                  <circle cx="10" cy="16" r="2" />
+                                  <circle cx="22" cy="16" r="2" />
+                                </svg>
+                              </button>
+                              <div
+                                class="origin-bottom-left z-10 absolute -bottom-12 -left-36 min-w-36 bg-white text-xs border border-slate-200 py-1.5 rounded shadow-lg overflow-hidden mt-1"
+                                @click.outside="open = false"
+                                @keydown.escape.window="open = false"
+                                x-show="open"
+                                x-transition:enter="transition ease-out duration-200 transform"
+                                x-transition:enter-start="opacity-0 -translate-y-2"
+                                x-transition:enter-end="opacity-100 translate-y-0"
+                                x-transition:leave="transition ease-out duration-200"
+                                x-transition:leave-start="opacity-100"
+                                x-transition:leave-end="opacity-0"
+                                x-cloak
+                              >
+                                <ul>
+                                  <!-- Fly -->
+                                  <li>
+                                    <a
+                                      class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3"
+                                      href="#0"
+                                      @click="open = false"
+                                      @focus="open = true"
+                                      @focusout="open = false"
+                                    >
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="-rotate-90 mr-2 icon icon-tabler icon-tabler-plane"
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="0.5"
+                                        stroke="#ffffff"
+                                        fill="none"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      >
+                                        <path
+                                          stroke="none"
+                                          d="M0 0h24v24H0z"
+                                          fill="none"
+                                        />
+                                        <path
+                                          class="fill-slate-600 opacity-50"
+                                          d="M16 10h4a2 2 0 0 1 0 4h-4l-4 7h-3l2 -7h-4l-2 2h-3l2 -4l-2 -4h3l2 2h4l-2 -7h3z"
+                                        />
+                                      </svg>
+                                      Fly
+                                    </a>
+                                  </li>
+
+                                  <!-- move to folder  -->
+                                  <li>
+                                    <a
+                                      class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3"
+                                      href="#0"
+                                      @click="open = false"
+                                      @focus="open = true"
+                                      @focusout="open = false"
+                                    >
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="icon icon-tabler icon-tabler-folder mr-2"
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="0.5"
+                                        stroke="#ffffff"
+                                        fill="none"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      >
+                                        <path
+                                          stroke="none"
+                                          d="M0 0h24v24H0z"
+                                          fill="none"
+                                        />
+                                        <path
+                                          class="fill-slate-600 opacity-50"
+                                          d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2"
+                                        />
+                                      </svg>
+                                      Move to folder
+                                    </a>
+                                  </li>
+
+                                  <!-- share  -->
+                                  <li>
+                                    <a
+                                      class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3"
+                                      href="#0"
+                                      @click="open = false"
+                                      @focus="open = true"
+                                      @focusout="open = false"
+                                    >
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="icon mr-2 icon-tabler icon-tabler-share"
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="1.5"
+                                        stroke="#9e9e9e"
+                                        fill="none"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      >
+                                        <path
+                                          stroke="none"
+                                          d="M0 0h24v24H0z"
+                                          fill="none"
+                                        />
+                                        <circle
+                                          cx="6"
+                                          cy="12"
+                                          r="3"
+                                          stroke="none"
+                                          class="fill-slate-600 opacity-50"
+                                        />
+                                        <circle
+                                          cx="18"
+                                          cy="6"
+                                          r="3"
+                                          stroke="none"
+                                          class="fill-slate-600 opacity-50"
+                                        />
+                                        <circle
+                                          cx="18"
+                                          cy="18"
+                                          r="3"
+                                          stroke="none"
+                                          class="fill-slate-600 opacity-50"
+                                        />
+                                        <line
+                                          x1="8.7"
+                                          y1="10.7"
+                                          x2="15.3"
+                                          y2="7.3"
+                                        />
+                                        <line
+                                          x1="8.7"
+                                          y1="13.3"
+                                          x2="15.3"
+                                          y2="16.7"
+                                        />
+                                      </svg>
+                                      Share
+                                    </a>
+                                  </li>
+
+                                  <!-- user settings  -->
+                                  <li>
+                                    <a
+                                      class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3"
+                                      href="#0"
+                                      @click="open = false"
+                                      @focus="open = true"
+                                      @focusout="open = false"
+                                    >
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="mr-2 icon icon-tabler icon-tabler-users"
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="1.5"
+                                        stroke="#9e9e9e"
+                                        fill="none"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      >
+                                        <path
+                                          stroke="none"
+                                          d="M0 0h24v24H0z"
+                                          fill="none"
+                                        />
+                                        <circle
+                                          cx="9"
+                                          cy="7"
+                                          r="4"
+                                          stroke="none"
+                                          class="fill-slate-600 opacity-50"
+                                        />
+                                        <path
+                                          d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"
+                                          stroke="none"
+                                          class="fill-slate-600 opacity-50"
+                                        />
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                                        <path
+                                          d="M21 21v-2a4 4 0 0 0 -3 -3.85"
+                                        />
+                                      </svg>
+                                      User Settings
+                                    </a>
+                                  </li>
+
+                                  <!-- delete  -->
+                                  <li>
+                                    <a
+                                      class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3"
+                                      href="#0"
+                                      @click="open = false"
+                                      @focus="open = true"
+                                      @focusout="open = false"
+                                    >
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="mr-2 icon icon-tabler icon-tabler-trash"
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="1.5"
+                                        stroke="#9e9e9e"
+                                        fill="none"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      >
+                                        <path
+                                          stroke="none"
+                                          d="M0 0h24v24H0z"
+                                          fill="none"
+                                        />
+                                        <line x1="4" y1="7" x2="20" y2="7" />
+                                        <line x1="10" y1="11" x2="10" y2="17" />
+                                        <line x1="14" y1="11" x2="14" y2="17" />
+                                        <path
+                                          d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"
+                                        />
+                                        <path
+                                          d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"
+                                        />
+                                      </svg>
+                                      Delete
+                                    </a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            <!-- End -->
+                          </div>
+                        </div>
+
+                        <div class="relative items-center">
+                          <a class="font-semibold text-slate-800" href="">
+                            <div
+                              class="flex items-center justify-between bg-white border-slate-200 shadow-lg rounded-sm border w-auto m-2 px-5 py-4"
+                            >
+                              <div
+                                class="md:flex justify-between items-center space-y-4 md:space-y-0 space-x-2"
+                              >
+                                <!--  Left side  -->
+                                <div
+                                  class="flex items-start items-center space-x-3 md:space-x-4"
+                                >
+                                  <div class="w-9 h-9 shrink-0 mt-1">
+                                    <img
+                                      class="w-9 h-9 rounded-full"
+                                      src="./images/map1.jpg"
+                                      width="36"
+                                      height="36"
+                                      alt="{props.company}"
+                                    />
+                                  </div>
+                                  <div>
+                                    <div
+                                      class="flex lg:flex-row md:flex-row flex-col place-items-start lg:place-items-center md:place-items-center"
+                                    >
+                                      <h3>Agriculture Example</h3>
+
+                                      <!-- example   -->
+
+                                      <!-- Start  -->
+                                      <div
+                                        class="text-xs m-2 inline-flex font-medium bg-slate-700 text-slate-100 rounded-full text-center px-2.5 py-1"
+                                      >
+                                        <svg
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          class="icon mr-2 icon-tabler icon-tabler-box-multiple"
+                                          width="16"
+                                          height="16"
+                                          viewBox="0 0 24 24"
+                                          stroke-width="2"
+                                          stroke="#ffffff"
+                                          fill="none"
+                                          stroke-linecap="round"
+                                          stroke-linejoin="round"
+                                        >
+                                          <path
+                                            stroke="none"
+                                            d="M0 0h24v24H0z"
+                                            fill="none"
+                                          />
+                                          <rect
+                                            x="7"
+                                            y="3"
+                                            width="14"
+                                            height="14"
+                                            rx="2"
+                                          />
+                                          <path
+                                            d="M17 17v2a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h2"
+                                          />
+                                        </svg>
+                                        Example
+                                      </div>
+                                      <!-- End -->
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <!-- Right side mobile device only  -->
+                                <div
+                                  class="flex block md:hidden lg:hidden items-center relative left-10 space-x-4 md:pl-0"
+                                >
+                                  <div
+                                    class="text-sm text-slate-500 whitespace-nowrap"
+                                  >
+                                    April 22, 2023
+                                  </div>
+                                </div>
+                              </div>
+
+                              <!-- Right side  -->
+                              <div
+                                class="flex hidden md:block lg:block items-center relative right-10 space-x-4 md:pl-0"
+                              >
+                                <div
+                                  class="text-sm text-slate-500 whitespace-nowrap"
+                                >
+                                  April 22, 2023
+                                </div>
+                              </div>
+                            </div>
+                          </a>
+
+                          <!-- Quick Selection -->
+                          <div>
+                            <!-- Start -->
+                            <div
+                              class="absolute top-5 right-5 flex"
+                              x-data="{ open: false }"
+                            >
+                              <button
+                                class="text-tin-300 hover:text-slate-500 rounded-full"
+                                :class="{ 'bg-slate-100 text-slate-500': open }"
+                                aria-haspopup="true"
+                                @click.prevent="open = !open"
+                                :aria-expanded="open"
+                              >
+                                <span class="sr-only">Menu</span>
+                                <svg
+                                  class="w-8 h-8 fill-current -rotate-90"
+                                  viewBox="0 0 32 32"
+                                >
+                                  <circle cx="16" cy="16" r="2" />
+                                  <circle cx="10" cy="16" r="2" />
+                                  <circle cx="22" cy="16" r="2" />
+                                </svg>
+                              </button>
+                              <div
+                                class="origin-bottom-left z-10 absolute -bottom-12 -left-36 min-w-36 bg-white text-xs border border-slate-200 py-1.5 rounded shadow-lg overflow-hidden mt-1"
+                                @click.outside="open = false"
+                                @keydown.escape.window="open = false"
+                                x-show="open"
+                                x-transition:enter="transition ease-out duration-200 transform"
+                                x-transition:enter-start="opacity-0 -translate-y-2"
+                                x-transition:enter-end="opacity-100 translate-y-0"
+                                x-transition:leave="transition ease-out duration-200"
+                                x-transition:leave-start="opacity-100"
+                                x-transition:leave-end="opacity-0"
+                                x-cloak
+                              >
+                                <ul>
+                                  <!-- Fly -->
+                                  <li>
+                                    <a
+                                      class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3"
+                                      href="#0"
+                                      @click="open = false"
+                                      @focus="open = true"
+                                      @focusout="open = false"
+                                    >
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="-rotate-90 mr-2 icon icon-tabler icon-tabler-plane"
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="0.5"
+                                        stroke="#ffffff"
+                                        fill="none"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      >
+                                        <path
+                                          stroke="none"
+                                          d="M0 0h24v24H0z"
+                                          fill="none"
+                                        />
+                                        <path
+                                          class="fill-slate-600 opacity-50"
+                                          d="M16 10h4a2 2 0 0 1 0 4h-4l-4 7h-3l2 -7h-4l-2 2h-3l2 -4l-2 -4h3l2 2h4l-2 -7h3z"
+                                        />
+                                      </svg>
+                                      Fly
+                                    </a>
+                                  </li>
+
+                                  <!-- move to folder  -->
+                                  <li>
+                                    <a
+                                      class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3"
+                                      href="#0"
+                                      @click="open = false"
+                                      @focus="open = true"
+                                      @focusout="open = false"
+                                    >
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="icon icon-tabler icon-tabler-folder mr-2"
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="0.5"
+                                        stroke="#ffffff"
+                                        fill="none"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      >
+                                        <path
+                                          stroke="none"
+                                          d="M0 0h24v24H0z"
+                                          fill="none"
+                                        />
+                                        <path
+                                          class="fill-slate-600 opacity-50"
+                                          d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2"
+                                        />
+                                      </svg>
+                                      Move to folder
+                                    </a>
+                                  </li>
+
+                                  <!-- share  -->
+                                  <li>
+                                    <a
+                                      class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3"
+                                      href="#0"
+                                      @click="open = false"
+                                      @focus="open = true"
+                                      @focusout="open = false"
+                                    >
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="icon mr-2 icon-tabler icon-tabler-share"
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="1.5"
+                                        stroke="#9e9e9e"
+                                        fill="none"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      >
+                                        <path
+                                          stroke="none"
+                                          d="M0 0h24v24H0z"
+                                          fill="none"
+                                        />
+                                        <circle
+                                          cx="6"
+                                          cy="12"
+                                          r="3"
+                                          stroke="none"
+                                          class="fill-slate-600 opacity-50"
+                                        />
+                                        <circle
+                                          cx="18"
+                                          cy="6"
+                                          r="3"
+                                          stroke="none"
+                                          class="fill-slate-600 opacity-50"
+                                        />
+                                        <circle
+                                          cx="18"
+                                          cy="18"
+                                          r="3"
+                                          stroke="none"
+                                          class="fill-slate-600 opacity-50"
+                                        />
+                                        <line
+                                          x1="8.7"
+                                          y1="10.7"
+                                          x2="15.3"
+                                          y2="7.3"
+                                        />
+                                        <line
+                                          x1="8.7"
+                                          y1="13.3"
+                                          x2="15.3"
+                                          y2="16.7"
+                                        />
+                                      </svg>
+                                      Share
+                                    </a>
+                                  </li>
+
+                                  <!-- user settings  -->
+                                  <li>
+                                    <a
+                                      class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3"
+                                      href="#0"
+                                      @click="open = false"
+                                      @focus="open = true"
+                                      @focusout="open = false"
+                                    >
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="mr-2 icon icon-tabler icon-tabler-users"
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="1.5"
+                                        stroke="#9e9e9e"
+                                        fill="none"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      >
+                                        <path
+                                          stroke="none"
+                                          d="M0 0h24v24H0z"
+                                          fill="none"
+                                        />
+                                        <circle
+                                          cx="9"
+                                          cy="7"
+                                          r="4"
+                                          stroke="none"
+                                          class="fill-slate-600 opacity-50"
+                                        />
+                                        <path
+                                          d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"
+                                          stroke="none"
+                                          class="fill-slate-600 opacity-50"
+                                        />
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                                        <path
+                                          d="M21 21v-2a4 4 0 0 0 -3 -3.85"
+                                        />
+                                      </svg>
+                                      User Settings
+                                    </a>
+                                  </li>
+
+                                  <!-- delete  -->
+                                  <li>
+                                    <a
+                                      class="font-medium text-xs text-tin hover:text-slate-800 flex py-1 px-3"
+                                      href="#0"
+                                      @click="open = false"
+                                      @focus="open = true"
+                                      @focusout="open = false"
+                                    >
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="mr-2 icon icon-tabler icon-tabler-trash"
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        stroke-width="1.5"
+                                        stroke="#9e9e9e"
+                                        fill="none"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                      >
+                                        <path
+                                          stroke="none"
+                                          d="M0 0h24v24H0z"
+                                          fill="none"
+                                        />
+                                        <line x1="4" y1="7" x2="20" y2="7" />
+                                        <line x1="10" y1="11" x2="10" y2="17" />
+                                        <line x1="14" y1="11" x2="14" y2="17" />
+                                        <path
+                                          d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"
+                                        />
+                                        <path
+                                          d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"
+                                        />
+                                      </svg>
+                                      Delete
+                                    </a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            <!-- End -->
+                          </div>
+                        </div>
+
+                        <div>
+                          <!-- list view pagination  -->
+                          <div class="px-6 py-8 rounded-sm">
+                            <!-- Start -->
+                            <div class="flex justify-center">
+                              <nav
+                                class="flex"
+                                role="navigation"
+                                aria-label="Navigation"
+                              >
+                                <div class="mr-2">
+                                  <span
+                                    class="inline-flex items-center justify-center rounded leading-5 px-2.5 py-2 bg-white border border-slate-200 text-slate-300"
+                                  >
+                                    <span class="sr-only">Previous</span><wbr />
+                                    <svg
+                                      class="h-4 w-4 fill-current"
+                                      viewBox="0 0 16 16"
+                                    >
+                                      <path
+                                        d="M9.4 13.4l1.4-1.4-4-4 4-4-1.4-1.4L4 8z"
+                                      />
+                                    </svg>
+                                  </span>
+                                </div>
+                                <ul
+                                  class="inline-flex text-sm font-medium -space-x-px shadow-sm"
+                                >
+                                  <li>
+                                    <span
+                                      class="inline-flex items-center justify-center rounded-l leading-5 px-3.5 py-2 bg-white border border-slate-200 text-secondary"
+                                      >1</span
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      class="inline-flex items-center justify-center leading-5 px-3.5 py-2 bg-white hover:bg-secondary border border-slate-200 text-tin hover:text-white"
+                                      href="#0"
+                                      >2</a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      class="inline-flex items-center justify-center leading-5 px-3.5 py-2 bg-white hover:bg-secondary border border-slate-200 text-tin hover:text-white"
+                                      href="#0"
+                                      >3</a
+                                    >
+                                  </li>
+                                  <li>
+                                    <span
+                                      class="inline-flex items-center justify-center leading-5 px-3.5 py-2 bg-white border border-slate-200 text-tin-300"
+                                      >…</span
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      class="inline-flex items-center justify-center rounded-r leading-5 px-3.5 py-2 bg-white hover:bg-secondary border border-slate-200 text-tin hover:text-white"
+                                      href="#0"
+                                      >9</a
+                                    >
+                                  </li>
+                                </ul>
+                                <div class="ml-2">
+                                  <a
+                                    href="#0"
+                                    class="inline-flex items-center justify-center rounded leading-5 px-2.5 py-2 bg-white hover:bg-secondary border border-slate-200 text-tin hover:text-white shadow-sm"
+                                  >
+                                    <span class="sr-only">Next</span><wbr />
+                                    <svg
+                                      class="h-4 w-4 fill-current"
+                                      viewBox="0 0 16 16"
+                                    >
+                                      <path
+                                        d="M6.6 13.4L5.2 12l4-4-4-4 1.4-1.4L12 8z"
+                                      />
+                                    </svg>
+                                  </a>
+                                </div>
+                              </nav>
+                            </div>
+                            <!-- End -->
+                          </div>
+                        </div>
                       </div>
 
-                      
                       <!-- map view  -->
                       <div class="swiper-slide">
-                        <img src="./images/mapview.png" alt="">
+                        <img src="./images/mapview.png" alt="" />
                       </div>
-                      
-                      
-                     
                     </div>
-                   
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
-          
         </main>
       </div>
     </div>
@@ -4551,7 +4821,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var swiper = new Swiper(".mySwiper", {
         slidesPerView: 3,
         spaceBetween: 30,
-       
+
         breakpoints: {
           390: {
             slidesPerView: 2,
@@ -4572,17 +4842,16 @@ document.addEventListener('DOMContentLoaded', function () {
         },
       });
 
-
       var menu = ["List", "Map"];
       var projectView = new Swiper(".tabView", {
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-        renderBullet: function (index, className) {
-          return '<span class="' + className + '">' + menu[index] + "</span>";
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+          renderBullet: function (index, className) {
+            return '<span class="' + className + '">' + menu[index] + "</span>";
+          },
         },
-      },
-    });
+      });
     </script>
   </body>
 </html>

@@ -94,6 +94,10 @@ body {
   --tw-bg-opacity: 1;
   background-color: rgb(146 207 67 / var(--tw-bg-opacity));
 }
+.bg-secondary-dark{
+  --tw-bg-opacity: 1;
+  background-color: rgb(64 110 4 / var(--tw-bg-opacity));
+}
 
 
 
@@ -108,6 +112,10 @@ body {
 .text-secondary-light{
   --tw-text-opacity: 1;
   color: rgb(101 191 6 / var(--tw-text-opacity));
+}
+.text-secondary-dark{
+  --tw-text-opacity: 1;
+  color: rgb(64 110 4 / var(--tw-text-opacity));
 }
 .text-secondary-300{
   --tw-text-opacity: 1;
