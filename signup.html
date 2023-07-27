@@ -58,7 +58,7 @@
         
                         <h1 class="text-3xl text-slate-800 font-bold mb-6">Create your Account ✨</h1>
                         <!-- Form -->
-                        <form>
+                        <form onsubmit="signup(event)">
                             <div class="space-y-4">
                                 <div>
                                     <label class="block text-sm font-medium mb-1" for="email">Email Address <span class="text-rose-500">*</span></label>
@@ -68,14 +68,7 @@
                                     <label class="block text-sm font-medium mb-1" for="name">Full Name <span class="text-rose-500">*</span></label>
                                     <input id="name" class="form-input w-full" type="text" />
                                 </div>
-                                <div>
-                                    <label class="block text-sm font-medium mb-1" for="role">Your Role <span class="text-rose-500">*</span></label>
-                                    <select id="role" class="form-select w-full">
-                                        <option>Designer</option>
-                                        <option>Developer</option>
-                                        <option>Accountant</option>
-                                    </select>
-                                </div>
+                                
                                 <div>
                                     <label class="block text-sm font-medium mb-1" for="password">Password</label>
                                     <input id="password" class="form-input w-full" type="password" autocomplete="on" />
@@ -115,7 +108,7 @@
     </main>
 
     <script src="./js/vendors/alpinejs.min.js" defer></script>
-
+<script src="app.js" type="module"></script>
 </body>
 
 </html>

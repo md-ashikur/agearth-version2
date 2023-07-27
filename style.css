@@ -5569,3 +5569,47 @@ margin-right: 7rem;
     width: 14rem;
   }
 }
+
+
+
+
+
+
+
+
+
+/* ===================================================================== */
+/*!
+* jQuery Mobile 1.4.5
+* Git HEAD hash: 68e55e78b292634d3991c795f06f5e37a512decc <> Date: Fri Oct 31 2014 17:33:30 UTC
+* http://jquerymobile.com
+*
+* Copyright 2010, 2014 jQuery Foundation, Inc. and othercontributors
+* Released under the MIT license.
+* http://jquery.org/license
+*
+*/
+
+
+/* "page" containers - full-screen views, one should always be in view post-pageload */
+.ui-mobile [data-role=page],
+.ui-mobile [data-role=dialog],
+.ui-page {
+	top: 0;
+	left: 0;
+	width: 100%;
+	min-height: 100%;
+	position: absolute;
+	display: none;
+	border: 0;
+}
+/* On ios4, setting focus on the page element causes flashing during transitions when there is an outline, so we turn off outlines */
+.ui-page {
+	outline: none;
+}
+.ui-mobile .ui-page-active {
+	display: block;
+	overflow: visible;
+	overflow-x: hidden;
+}
+
